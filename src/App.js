@@ -30,7 +30,7 @@ function App() {
   const baseURL =process.env.REACT_APP_BACKEND_PORT || '';
   const getData = async () => {
     try {
-      const response = await axios.get(`${baseURL}/api/portfolio/data`)
+      const response = await axios.get(`${req.protocol}://${req.get("host")}/api/portfolio/data`)
       setLoading(false);
       saveData(response.data)
       console.log("data saved");
