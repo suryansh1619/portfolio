@@ -27,7 +27,7 @@ function App() {
   const saveData = (data) => {
     setData(data);
   }
-  const baseURL =process.env.REACT_APP_BACKEND_PORT || '';
+  const baseURL ="https://portfolio-3r5b.onrender.com/";
   const getData = async () => {
     try {
       const response = await axios.get(`${baseURL}/api/portfolio/data`)
