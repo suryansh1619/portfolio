@@ -1,0 +1,13 @@
+.admin-home{
+    text-align: center;
+    min-height: 100vh;
+}
+.admin-home-social-list{
+    grid-template-columns: repeat(3,1fr);
+}
+.admin-home-social-edit-btn{ 
+    height: 50px;
+    width: 100px;
+    margin-top: 1rem ;
+    justify-content: center;
+}

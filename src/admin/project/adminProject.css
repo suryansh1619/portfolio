@@ -1,0 +1,112 @@
+.admin-project{
+    text-align: center;
+    min-height: 100vh;
+}
+.admin-project-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.admin-project-list{
+    grid-template-columns: repeat(2,1fr);
+    row-gap: 0rem;
+}
+.admin-project-new{
+    grid-template-columns: repeat(2,1fr);
+    row-gap: 0rem;
+}
+.admin-project-edit-btn,
+.admin-project-delete-btn,
+.admin-project-add-btn,
+.admin-project-add-new-btn,
+.admin-project-reset-btn{
+    justify-content: center;
+    height: 55px;
+    width: 150px;
+    margin-top: 1rem;
+}
+
+.admin-project-new-modal {
+    position: fixed; 
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem; 
+    z-index: 1000; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+    border-radius: 8px; 
+}
+
+.admin-project-card{
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 1.25rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+.admin-project-new-main{
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    z-index: 1010; 
+    height: 100vh;
+    width: 100vw;
+    z-index: 1000;
+}
+.admin-project-new-close{
+    position: absolute;
+    top:1%;
+    right:2%;
+    color: var(--first-color);
+    font-size: 25px;
+    filter: invert(0.8);
+}
+.admin-project-list-modal{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    column-gap: 2rem;
+    row-gap:2rem;
+    align-items: start;
+    width:600px;
+}
+.admin-project-list-item-modal{
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 1.25rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+.admin-project-title{
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-medium);
+    margin-bottom: var(--mb-0-5);
+    transform: translate3d(-90px,5px,0);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+.admin-project-tmp-title{
+    color: var(--first-color);
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-medium);
+    transform: translate3d(-90px,27px,0);
+}
+.admin-project-list-item-hover-modal{
+    background-color: var(--first-color);
+    position: absolute;
+    inset: 0;
+    place-items: center;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+.admin-project-list-item-modal:hover .admin-project-list-item-hover-modal{
+    opacity: 1;
+}
+.admin-project-list-item-modal:hover .admin-project-tmp-title{
+    opacity: 0;
+}
+.admin-project-list-item-modal:hover .admin-project-title{
+    opacity: 1;
+    transform: translate3d(0,-65px,0);
+}

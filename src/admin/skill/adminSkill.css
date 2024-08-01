@@ -1,0 +1,24 @@
+.admin-skill{
+    text-align: center;
+    min-height: 100vh;
+}
+.admin-skill-container{
+    display: flex;
+    justify-content: center;
+}
+.admin-skill-list{
+    grid-template-columns: repeat(4,max-content);
+}
+.admin-skill-new{
+    grid-template-columns: repeat(4,max-content);
+}
+.admin-skill-edit-btn,
+.admin-skill-delete-btn,
+.admin-skill-add-btn,
+.admin-skill-reset-btn{
+    margin-top: 1rem;
+    justify-content: center;
+    height: 55px;
+    width: 150px;
+    top: 1rem;
+}

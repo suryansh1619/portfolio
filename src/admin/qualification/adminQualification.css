@@ -1,0 +1,23 @@
+.admin-qualification{
+    text-align: center;
+    min-height: 100vh;
+}
+.admin-qualification-container{
+    display: flex;
+    justify-content: center;
+}
+.admin-qualification-list{
+    grid-template-columns: repeat(5,1fr);
+}
+.admin-qualification-new{
+    grid-template-columns: repeat(5,2fr);
+}
+.admin-qualification-edit-btn,
+.admin-qualification-delete-btn,
+.admin-qualification-add-btn,
+.admin-qualification-reset-btn{
+    height: 55px;
+    width: 150px;
+    margin-top: 1rem;
+    justify-content: center;
+}

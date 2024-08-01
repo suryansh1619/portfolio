@@ -1,0 +1,11 @@
+.admin-about{
+    text-align: center;
+    height: 100vh;
+}
+.admin-about-container{
+    display: flex;
+    justify-content: center;
+}
+.admin-about-list{
+    grid-template-columns: repeat(2,1fr);
+}

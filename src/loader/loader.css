@@ -1,0 +1,43 @@
+.loader{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    inset: 0;
+}
+
+.loader-content{
+    display: flex;
+    gap: 5px;
+    font-size: 5rem;
+    font-weight:500;
+}
+
+.s1{
+    animation: s1 1s infinite;
+    color: var(--first-color);
+}
+
+@keyframes s1{
+    0%{
+        opacity:0.2;  
+    }
+    100%{
+        opacity:1;
+    }
+}
+
+.s2{
+    animation: s2 1s infinite;
+    color: var(--first-color);
+}
+
+@keyframes s2{
+    0%{
+        opacity:1;  
+    }
+    100%{
+        opacity:0.2;
+    }
+}

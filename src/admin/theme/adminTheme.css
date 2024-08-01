@@ -1,0 +1,23 @@
+.admin-theme{
+    text-align: center;
+    min-height: 100vh;
+}
+.admin-theme-container{
+    display: flex;
+    justify-content: center;
+}
+.admin-theme-list{
+    grid-template-columns: repeat(4,max-content);
+}
+.admin-theme-new{
+    grid-template-columns: repeat(4,max-content);
+}
+.admin-theme-edit-btn,
+.admin-theme-delete-btn,
+.admin-theme-add-btn,
+.admin-theme-reset-btn{
+    height: 55px;
+    width: 150px;
+    margin-top: 1rem;
+    justify-content: center;
+}
