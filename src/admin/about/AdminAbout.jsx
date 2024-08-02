@@ -103,7 +103,7 @@ export default function AboutAdmin(props) {
                                     backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)',
                                     marginTop:"1rem"
                                 }}
-                            type="submit" className='button button--flex'>Save</button>
+                            type="submit" className='admin-about-save-btn button button--flex'>Save</button>
                         </div>
                     </form>
                     <hr/>
@@ -162,7 +162,7 @@ export default function AboutAdmin(props) {
                                     backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)',
                                     marginTop:"1rem"
                                 }}
-                            type="submit" className='button button--flex'>Save</button>
+                            type="submit" className='admin-about-save-btn button button--flex'>Save</button>
                         </div>
                     </form>
                 </Paper>

@@ -11,10 +11,18 @@
     margin-top: 1rem ;
     justify-content: center;
 }
+.admin-home-social-edit-btn,
+.admin-home-save-btn{
+    height: 55px;
+    width: 150px;
+    justify-content: center;
+}
 
 
 @media screen and (max-width:576px) {
-    .admin-home-social-edit-btn{ 
+    .admin-home-social-edit-btn,
+    .admin-home-save-btn{ 
+        height: 35px;
         margin-top: -1rem;
         margin-bottom: 1rem;
     }

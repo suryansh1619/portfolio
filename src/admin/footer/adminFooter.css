@@ -21,3 +21,50 @@
     margin-top: 1rem;
     justify-content: center;
 }
+@media screen and (max-width:992px) {
+    .admin-footer-list{
+        grid-template-columns: repeat(2,max-content);
+    }
+    .admin-footer-new{
+        grid-template-columns: repeat(2,max-content);
+    }
+    .admin-footer-edit-btn,
+    .admin-footer-delete-btn,
+    .admin-footer-add-btn,
+    .admin-footer-reset-btn{
+        margin-top: -1rem;
+    }
+    .admin-footer-edit-btn,
+    .admin-footer-delete-btn{
+        margin-bottom: 1rem;
+    }
+    .admin-footer-single-item{
+        display: flex;
+        justify-content: center;
+    }
+}
+@media screen and (max-width:576px) {
+    .admin-footer-single-field{
+        grid-column: span 2;
+    }
+    .admin-footer-edit-btn,
+    .admin-footer-delete-btn,
+    .admin-footer-add-btn,
+    .admin-footer-reset-btn{
+        margin-top: .5rem;
+        height: 35px;
+    }
+    .admin-footer-new,
+    .admin-footer-list{
+        row-gap: 0rem;
+    }
+}
+@media screen and (max-width:400px) {
+    .admin-footer-edit-btn,
+    .admin-footer-delete-btn,
+    .admin-footer-add-btn,
+    .admin-footer-reset-btn{
+        width: 100px;
+        margin-top: .5rem;
+    }
+}

@@ -21,3 +21,50 @@
     margin-top: 1rem;
     justify-content: center;
 }
+@media screen and (max-width:992px) {
+    .admin-theme-list{
+        grid-template-columns: repeat(2,max-content);
+    }
+    .admin-theme-new{
+        grid-template-columns: repeat(2,max-content);
+    }
+    .admin-theme-edit-btn,
+    .admin-theme-delete-btn,
+    .admin-theme-add-btn,
+    .admin-theme-reset-btn{
+        margin-top: -1rem;
+    }
+    .admin-theme-edit-btn,
+    .admin-theme-delete-btn{
+        margin-bottom: 1rem;
+    }
+    .admin-theme-single-item{
+        display: flex;
+        justify-content: center;
+    }
+}
+@media screen and (max-width:576px) {
+    .admin-theme-single-field{
+        grid-column: span 2;
+    }
+    .admin-theme-edit-btn,
+    .admin-theme-delete-btn,
+    .admin-theme-add-btn,
+    .admin-theme-reset-btn{
+        margin-top: .5rem;
+        height: 35px;
+    }
+    .admin-theme-new,
+    .admin-theme-list{
+        row-gap: 0rem;
+    }
+}
+@media screen and (max-width:400px) {
+    .admin-theme-edit-btn,
+    .admin-theme-delete-btn,
+    .admin-theme-add-btn,
+    .admin-theme-reset-btn{
+        width: 100px;
+        margin-top: .5rem;
+    }
+}

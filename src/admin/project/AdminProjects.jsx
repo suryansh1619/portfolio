@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useState,useEffect} from 'react'
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import useInputObject from '../../hooks/useInputObject';
@@ -27,7 +27,20 @@ export default function AdminProjects(props) {
     const [isHovering, toggleHover] = useState(null);
     const [isHoveringEdit, toggleHoverEdit] = useToggle(false);
     const baseURL =process.env.REACT_APP_BACKEND_PORT || '';
-
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 576);
+    const [isMobile370, setIsMobile370] = useState(window.innerWidth <= 576);
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 576);
+        };
+        window.addEventListener('resize', handleResize);
+    }, []);
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile370(window.innerWidth <= 370);
+        };
+        window.addEventListener('resize', handleResize);
+    }, []);
     const changeHover=(index)=>{
         toggleHover(index);
     }
@@ -131,6 +144,8 @@ export default function AdminProjects(props) {
                                     className='admin-project-new-modal'>
                                         <i className='uil uil-times-circle admin-project-new-close' onClick={toggleHoverEdit}></i>
                                 <TextField
+                                size={isMobile ? "small": ''} 
+                                style={{width:isMobile370 ? "200px" : ''}}
                                 InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                     InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
                                 value={newProjectImgurl} 
@@ -140,6 +155,8 @@ export default function AdminProjects(props) {
                                 label="Image URL"
                                 />
                                 <TextField
+                                size={isMobile ? "small": ''} 
+                                style={{width:isMobile370 ? "200px" : ''}}
                                 InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                     InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
                                 value={newProjectLink} 
@@ -151,6 +168,8 @@ export default function AdminProjects(props) {
                                 />
                                 <div className='admin-project-new grid'>
                                     <TextField
+                                    size={isMobile ? "small": ''} 
+                                    style={{width:isMobile370 ? "100px" : ''}}
                                     InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                     InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
                                     value={newProject} 
@@ -161,6 +180,8 @@ export default function AdminProjects(props) {
                                     fullWidth
                                     />
                                     <TextField
+                                    size={isMobile ? "small": ''} 
+                                    style={{width:isMobile370 ? "100px" : ''}}
                                     InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                     InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
                                     value={newProjectCategory} 
@@ -171,6 +192,8 @@ export default function AdminProjects(props) {
                                     fullWidth
                                     />
                                     <TextField
+                                    size={isMobile ? "small": ''} 
+                                    style={{width:isMobile370 ? "100px" : ''}}
                                     InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                     InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
                                     value={newProjectTitle1} 
@@ -181,6 +204,8 @@ export default function AdminProjects(props) {
                                     fullWidth
                                     />
                                     <TextField
+                                    size={isMobile ? "small": ''} 
+                                    style={{width:isMobile370 ? "100px" : ''}}
                                     InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                     InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
                                     value={newProjectDescription1} 
@@ -191,6 +216,8 @@ export default function AdminProjects(props) {
                                     fullWidth
                                     />
                                     <TextField
+                                    size={isMobile ? "small": ''} 
+                                    style={{width:isMobile370 ? "100px" : ''}}
                                     InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                     InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
                                     value={newProjectTitle2} 
@@ -201,6 +228,8 @@ export default function AdminProjects(props) {
                                     fullWidth
                                     />
                                     <TextField
+                                    size={isMobile ? "small": ''} 
+                                    style={{width:isMobile370 ? "100px" : ''}}
                                     InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                     InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
                                     value={newProjectDescription2} 
@@ -211,6 +240,8 @@ export default function AdminProjects(props) {
                                     fullWidth
                                     />
                                     <TextField
+                                    size={isMobile ? "small": ''} 
+                                    style={{width:isMobile370 ? "100px" : ''}}
                                     InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                     InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
                                     value={newProjectTitle3} 
@@ -221,6 +252,8 @@ export default function AdminProjects(props) {
                                     fullWidth
                                     />
                                     <TextField
+                                    size={isMobile ? "small": ''} 
+                                    style={{width:isMobile370 ? "100px" : ''}}
                                     InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                     InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
                                     value={newProjectDescription3} 
@@ -231,6 +264,8 @@ export default function AdminProjects(props) {
                                     fullWidth
                                     />
                                     <TextField
+                                    size={isMobile ? "small": ''} 
+                                    style={{width:isMobile370 ? "100px" : ''}}
                                     InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                     InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
                                     value={newProjectTitle4} 
@@ -241,6 +276,8 @@ export default function AdminProjects(props) {
                                     fullWidth
                                     />
                                     <TextField
+                                    size={isMobile ? "small": ''} 
+                                    style={{width:isMobile370 ? "100px" : ''}}
                                     InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                     InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
                                     value={newProjectDescription4} 
@@ -310,6 +347,8 @@ export default function AdminProjects(props) {
                                                     }}
                                                                 className='admin-project-new-modal'>
                                                         <TextField
+                                                        size={isMobile ? "small": ''} 
+                                                        style={{width:isMobile370 ? "200px" : ''}}
                                                         InputProps={{ 
                                                                 style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                                         InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
@@ -321,6 +360,8 @@ export default function AdminProjects(props) {
                                                         fullWidth
                                                         />
                                                         <TextField
+                                                        size={isMobile ? "small": ''} 
+                                                        style={{width:isMobile370 ? "200px" : ''}}
                                                         InputProps={{ 
                                                                 style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                                         InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
@@ -333,6 +374,8 @@ export default function AdminProjects(props) {
                                                         />
                                                         <div key={index} className='admin-project-list grid'>
                                                             <TextField
+                                                            size={isMobile ? "small": ''} 
+                                                            style={{width:isMobile370 ? "100px" : ''}}
                                                             InputProps={{ 
                                                                 style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                                             InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
@@ -344,6 +387,8 @@ export default function AdminProjects(props) {
                                                             fullWidth
                                                             />
                                                             <TextField
+                                                            size={isMobile ? "small": ''} 
+                                                            style={{width:isMobile370 ? "100px" : ''}}
                                                             InputProps={{ 
                                                                 style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                                             InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
@@ -355,6 +400,8 @@ export default function AdminProjects(props) {
                                                             fullWidth
                                                             />
                                                             <TextField
+                                                            size={isMobile ? "small": ''} 
+                                                            style={{width:isMobile370 ? "100px" : ''}}
                                                             InputProps={{ 
                                                                 style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                                             InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
@@ -366,6 +413,8 @@ export default function AdminProjects(props) {
                                                             fullWidth
                                                             />
                                                             <TextField
+                                                            size={isMobile ? "small": ''} 
+                                                            style={{width:isMobile370 ? "100px" : ''}}
                                                             InputProps={{ 
                                                                 style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                                             InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
@@ -377,6 +426,8 @@ export default function AdminProjects(props) {
                                                             fullWidth
                                                             />
                                                             <TextField
+                                                            size={isMobile ? "small": ''} 
+                                                            style={{width:isMobile370 ? "100px" : ''}}
                                                             InputProps={{ 
                                                                 style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                                             InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
@@ -388,6 +439,8 @@ export default function AdminProjects(props) {
                                                             fullWidth
                                                             />
                                                             <TextField
+                                                            size={isMobile ? "small": ''} 
+                                                            style={{width:isMobile370 ? "100px" : ''}}
                                                             InputProps={{ 
                                                                 style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                                             InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
@@ -399,6 +452,8 @@ export default function AdminProjects(props) {
                                                             fullWidth
                                                             />
                                                             <TextField
+                                                            size={isMobile ? "small": ''} 
+                                                            style={{width:isMobile370 ? "100px" : ''}}
                                                             InputProps={{ 
                                                                 style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                                             InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
@@ -410,6 +465,8 @@ export default function AdminProjects(props) {
                                                             fullWidth
                                                             />
                                                             <TextField
+                                                            size={isMobile ? "small": ''} 
+                                                            style={{width:isMobile370 ? "100px" : ''}}
                                                             InputProps={{ 
                                                                 style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                                             InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
@@ -421,6 +478,8 @@ export default function AdminProjects(props) {
                                                             fullWidth
                                                             />
                                                             <TextField
+                                                            size={isMobile ? "small": ''} 
+                                                            style={{width:isMobile370 ? "100px" : ''}}
                                                             InputProps={{ 
                                                                 style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                                             InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
@@ -432,6 +491,8 @@ export default function AdminProjects(props) {
                                                             fullWidth
                                                             />
                                                             <TextField
+                                                            size={isMobile ? "small": ''} 
+                                                            style={{width:isMobile370 ? "100px" : ''}}
                                                             InputProps={{ 
                                                                 style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                                             InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 

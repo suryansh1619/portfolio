@@ -1,4 +1,4 @@
-import React,{useContext, useState} from 'react'
+import React,{useContext, useState,useEffect} from 'react'
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import useInputObject from '../../hooks/useInputObject';
@@ -15,6 +15,13 @@ export default function AdminFooter(props) {
     const [newFooterLink,setNewFooterLink,resetNewFooterLink]=useInput('');
     const {darktheme}=useContext(ThemeContext)
     const baseURL =process.env.REACT_APP_BACKEND_PORT || '';
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 576);
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 576);
+        };
+        window.addEventListener('resize', handleResize);
+    }, []);
 
     const onSubmitNewFooter=async(e)=>{
         e.preventDefault();
@@ -78,7 +85,9 @@ export default function AdminFooter(props) {
                     <form onSubmit={onSubmitNewFooter}>
                         <div style={{ margin: '1rem 0', padding: '.5rem 1rem' }}>
                             <div className='admin-footer-new grid'>
+                                <div className='admin-footer-single-field'>
                                 <TextField
+                                size={isMobile ? "small": ''}
                                 InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                 InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
                                 value={newFooter} 
@@ -88,7 +97,10 @@ export default function AdminFooter(props) {
                                 label="Name"
                                 fullWidth
                                 />
+                                </div>
+                                <div className='admin-footer-single-field'>
                                 <TextField
+                                size={isMobile ? "small": ''}
                                 InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                 InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
                                 value={newFooterLink} 
@@ -98,24 +110,29 @@ export default function AdminFooter(props) {
                                 label="Link"
                                 fullWidth
                                 />
-                                <button 
-                                style={
-                                    {   
-                                        color:darktheme ? 'var(--title-color)':'var(--container-color)',
-                                        backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
-                                    }}
-                                    className="admin-footer-add-btn button button--flex" 
-                                    variant="outlined"
-                                    type='submit'>Add</button>
-                                <button 
-                                style={
-                                    {   
-                                        color:darktheme ? 'var(--title-color)':'var(--container-color)',
-                                        backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
-                                    }}
-                                    className="admin-footer-reset-btn button button--flex" 
-                                    variant="outlined"
-                                    onClick={resetNewFooters}>Reset</button>
+                                </div>
+                                <div className="admin-footer-single-item">
+                                    <button 
+                                    style={
+                                        {   
+                                            color:darktheme ? 'var(--title-color)':'var(--container-color)',
+                                            backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
+                                        }}
+                                        className="admin-footer-add-btn button button--flex" 
+                                        variant="outlined"
+                                        type='submit'>Add</button>
+                                </div>
+                                <div className="admin-footer-single-item">
+                                    <button 
+                                    style={
+                                        {   
+                                            color:darktheme ? 'var(--title-color)':'var(--container-color)',
+                                            backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
+                                        }}
+                                        className="admin-footer-reset-btn button button--flex" 
+                                        variant="outlined"
+                                        onClick={resetNewFooters}>Reset</button>
+                                    </div>
                             </div>
                         </div>
                     </form>
@@ -127,7 +144,9 @@ export default function AdminFooter(props) {
                             {footers.map((footer,index)=>{
                                 return(
                                     <div key={index} className='admin-footer-list grid'>
+                                        <div className='admin-footer-single-field'>
                                         <TextField
+                                        size={isMobile ? "small": ''}
                                         InputProps={{ 
                                             readOnly: editIndex !== index,
                                             style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
@@ -139,7 +158,10 @@ export default function AdminFooter(props) {
                                         label="Name"
                                         fullWidth
                                         />
+                                        </div>
+                                        <div className='admin-footer-single-field'>
                                         <TextField
+                                        size={isMobile ? "small": ''}
                                         InputProps={{ 
                                             readOnly: editIndex !== index,
                                             style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
@@ -151,6 +173,8 @@ export default function AdminFooter(props) {
                                         label="Link"
                                         fullWidth
                                         />
+                                        </div>
+                                        <div className="admin-footer-single-item">
                                         {editIndex!==index ? <button 
                                         style={
                                             {   
@@ -171,6 +195,8 @@ export default function AdminFooter(props) {
                                             variant="outlined"
                                             onClick={onSubmitFooter}
                                             >Done</button>}
+                                        </div>
+                                        <div className="admin-footer-single-item">
                                         <button 
                                         style={
                                             {   
@@ -181,6 +207,7 @@ export default function AdminFooter(props) {
                                             variant="outlined"
                                             onClick={()=>onSubmitDeleteFooter(footer._id)}
                                             >Delete</button>
+                                            </div>
                                     </div>
                                 )
                             })}

@@ -87,7 +87,7 @@ export default function AdminSkill(props) {
                             <div className='admin-skill-new grid'>
                                 <div className='admin-skill-single-field'>
                                     <TextField
-                                    
+                                    size={isMobile ? "small": ''}
                                     InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                     InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
                                     value={newSkill} 

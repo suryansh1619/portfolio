@@ -110,3 +110,50 @@
     opacity: 1;
     transform: translate3d(0,-65px,0);
 }
+@media screen and (max-width:768px) {
+    .admin-project-container{
+        width: 100%;
+        margin: 0 auto;
+    }
+    .admin-project-list-modal{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .admin-project-list-item-modal{
+        width: 100%;
+        margin: auto;
+    }
+}
+
+@media screen and (max-width:576px) {
+    .admin-project-tmp-title{
+        transform: translate3d(0,0,0);
+    }
+    .admin-project-container{
+        width: 80%;
+        margin: 0 auto;
+    }
+    .admin-project-edit-btn,
+    .admin-project-delete-btn,
+    .admin-project-add-btn,
+    .admin-project-add-new-btn,
+    .admin-project-reset-btn{
+        height: 35px;
+    }
+}
+@media screen and (max-width:370px) {
+    .admin-project-edit-btn,
+    .admin-project-delete-btn,
+    .admin-project-add-btn,
+    .admin-project-add-new-btn,
+    .admin-project-reset-btn{
+        height: 35px;
+        width: 100px;
+        margin-left: 3px;
+        margin-right: 3px;
+    }
+}

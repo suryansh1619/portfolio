@@ -1,10 +1,9 @@
-import React,{useContext, useState} from 'react'
+import React,{useContext, useState,useEffect} from 'react'
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import useInputObject from '../../hooks/useInputObject';
 import './adminTheme.css'
 import useInput from '../../hooks/useInput';
-import { Button } from '@mui/material';
 import axios from 'axios';
 import { ThemeContext } from '../../contexts/ThemeContext';
 export default function AdminTheme(props) {
@@ -15,7 +14,13 @@ export default function AdminTheme(props) {
     const [newThemeColor,setNewThemeColor,resetNewThemeColor]=useInput('');
     const {darktheme}=useContext(ThemeContext);
     const baseURL =process.env.REACT_APP_BACKEND_PORT || '';
-
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 576);
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 576);
+        };
+        window.addEventListener('resize', handleResize);
+    }, []);
     const onSubmitNewTheme=async(e)=>{
         e.preventDefault();
         if(!newTheme || !newThemeColor) return;
@@ -77,7 +82,9 @@ export default function AdminTheme(props) {
                     <form onSubmit={onSubmitNewTheme}>
                         <div style={{ margin: '1rem 0', padding: '.5rem 1rem' }}>
                             <div className='admin-theme-new grid'>
+                            <div className='admin-theme-single-field'>
                                 <TextField
+                                size={isMobile ? "small": ''}
                                 InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                 InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
                                 value={newTheme} 
@@ -87,7 +94,10 @@ export default function AdminTheme(props) {
                                 label="Name"
                                 fullWidth
                                 />
+                                </div>
+                                <div className='admin-theme-single-field'>
                                 <TextField
+                                size={isMobile ? "small": ''}
                                 InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                 InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
                                 value={newThemeColor} 
@@ -97,6 +107,8 @@ export default function AdminTheme(props) {
                                 label="Color"
                                 fullWidth
                                 />
+                                </div>
+                                <div className="admin-theme-single-item">
                                 <button 
                                 style={
                                     {   
@@ -106,6 +118,8 @@ export default function AdminTheme(props) {
                                     className="admin-theme-add-btn button button--flex" 
                                     variant="outlined"
                                     type='submit'>Add</button>
+                                    </div>
+                                    <div className="admin-theme-single-item">
                                 <button 
                                 style={
                                     {   
@@ -115,6 +129,7 @@ export default function AdminTheme(props) {
                                     className="admin-theme-reset-btn button button--flex" 
                                     variant="outlined"
                                     onClick={resetNewThemes}>Reset</button>
+                                    </div>
                             </div>
                         </div>
                     </form>
@@ -126,7 +141,9 @@ export default function AdminTheme(props) {
                             {themes.map((theme,index)=>{
                                 return(
                                     <div key={index} className='admin-theme-list grid'>
+                                        <div className='admin-theme-single-field'>
                                         <TextField
+                                        size={isMobile ? "small": ''}
                                         InputProps={{ 
                                             readOnly: editIndex !== index,
                                             style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
@@ -138,7 +155,10 @@ export default function AdminTheme(props) {
                                         label="Name"
                                         fullWidth
                                         />
+                                        </div>
+                                        <div className='admin-theme-single-field'>
                                         <TextField
+                                        size={isMobile ? "small": ''}
                                         InputProps={{ 
                                             readOnly: editIndex !== index,
                                             style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
@@ -150,6 +170,8 @@ export default function AdminTheme(props) {
                                         label="Color"
                                         fullWidth
                                         />
+                                        </div>
+                                        <div className="admin-theme-single-item">
                                         {editIndex!==index ? <button 
                                         style={
                                             {   
@@ -170,6 +192,8 @@ export default function AdminTheme(props) {
                                             variant="outlined"
                                             onClick={onSubmitTheme}
                                             >Done</button>}
+                                            </div>
+                                            <div className="admin-theme-single-item">
                                         <button 
                                         style={
                                             {   
@@ -180,6 +204,7 @@ export default function AdminTheme(props) {
                                             variant="outlined"
                                             onClick={()=>onSubmitDeleteTheme(theme._id)}
                                             >Delete</button>
+                                            </div>
                                     </div>
                                 )
                             })}

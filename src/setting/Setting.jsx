@@ -2,6 +2,7 @@ import React,{useContext} from 'react'
 import { ThemeContext } from '../contexts/ThemeContext';
 import './setting.css'
 import Theme from '../theme/Theme';
+import { Link } from 'react-router-dom';
 export default function Setting(props) {
     const {themes}=props;
     const { darktheme } = useContext(ThemeContext);
@@ -17,11 +18,12 @@ export default function Setting(props) {
                         color: darktheme ? "var(--container-color)" : "var(--title-color)"
                     }}
                     >Edit Portfolio</h3>
-                <button className='edit button button--flex'
+                <Link className='edit button button--flex'
+                    to="/admin/home"
                         style={{ backgroundColor: !darktheme ? "var(--title-color)" : "var(--container-color)",
                                 color: !darktheme ? "var(--container-color)" : "var(--title-color)" }}>
                         Edit
-                </button>
+                </Link>
             </div>
         </section>
     )

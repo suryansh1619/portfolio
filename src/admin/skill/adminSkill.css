@@ -54,6 +54,7 @@
     .admin-skill-add-btn,
     .admin-skill-reset-btn{
         margin-top: .5rem;
+        height: 35px;
     }
     .admin-skill-new,
     .admin-skill-list{

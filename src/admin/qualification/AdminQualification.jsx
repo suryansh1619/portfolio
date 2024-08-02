@@ -1,4 +1,4 @@
-import React,{useContext, useState} from 'react'
+import React,{useContext, useState,useEffect} from 'react'
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import useInputObject from '../../hooks/useInputObject';
@@ -15,7 +15,14 @@ export default function AdminQualification(props) {
     const [editIndexExperience, setEditIndexExperience] = useState(null);
     const {darktheme}=useContext(ThemeContext)
     const baseURL =process.env.REACT_APP_BACKEND_PORT || '';
-    
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 576);
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 576);
+        };
+        window.addEventListener('resize', handleResize);
+    }, []);
+
     const [newEducation,setNewEducation,resetNewEducation]=useInput('');
     const [newEducationSub,setNewEducationSub,resetNewEducationSub]=useInput('');
     const [newEducationCalender,setNewEducationCalender,resetNewEducationCalender]=useInput('');
@@ -143,6 +150,7 @@ export default function AdminQualification(props) {
                         <div style={{ margin: '1rem 0', padding: '.5rem 1rem' }}>
                             <div className='admin-qualification-new grid'>
                                 <TextField
+                                size={isMobile ? "small": ''} 
                                 InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                 InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
                                 value={newEducation} 
@@ -153,6 +161,7 @@ export default function AdminQualification(props) {
                                 fullWidth
                                 />
                                 <TextField
+                                size={isMobile ? "small": ''} 
                                 InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                 InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
                                 value={newEducationSub} 
@@ -163,6 +172,7 @@ export default function AdminQualification(props) {
                                 fullWidth
                                 />
                                 <TextField
+                                size={isMobile ? "small": ''} 
                                 InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                 InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
                                 value={newEducationCalender} 
@@ -172,22 +182,24 @@ export default function AdminQualification(props) {
                                 label="Calender"
                                 fullWidth
                                 />
-                                <button 
-                                style={
-                                    {   
-                                        color:darktheme ? 'var(--title-color)':'var(--container-color)',
-                                        backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
-                                    }}
-                                    className="admin-qualification-add-btn button button--flex" 
-                                    type='submit'>Add</button>
-                                <button 
-                                style={
-                                    {   
-                                        color:darktheme ? 'var(--title-color)':'var(--container-color)',
-                                        backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
-                                    }}
-                                    className="admin-qualification-reset-btn button button--flex" 
-                                    onClick={resetAddedEducation}>Reset</button>
+                                <div className='admin-qualification-single-item'>
+                                    <button 
+                                    style={
+                                        {   
+                                            color:darktheme ? 'var(--title-color)':'var(--container-color)',
+                                            backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
+                                        }}
+                                        className="admin-qualification-add-btn button button--flex" 
+                                        type='submit'>Add</button>
+                                    <button 
+                                    style={
+                                        {   
+                                            color:darktheme ? 'var(--title-color)':'var(--container-color)',
+                                            backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
+                                        }}
+                                        className="admin-qualification-reset-btn button button--flex" 
+                                        onClick={resetAddedEducation}>Reset</button>
+                                    </div>
                             </div>
                         </div>
                     </form>
@@ -200,6 +212,7 @@ export default function AdminQualification(props) {
                                 return (
                                     <div key={index} className='admin-qualification-list grid'>
                                         <TextField
+                                        size={isMobile ? "small": ''} 
                                         InputProps={{ 
                                             readOnly: editIndexEducation !== index,
                                             style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
@@ -212,6 +225,7 @@ export default function AdminQualification(props) {
                                         fullWidth
                                         />
                                         <TextField
+                                        size={isMobile ? "small": ''} 
                                         InputProps={{ 
                                             readOnly: editIndexEducation !== index,
                                             style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
@@ -224,6 +238,7 @@ export default function AdminQualification(props) {
                                         fullWidth
                                         />
                                         <TextField
+                                        size={isMobile ? "small": ''} 
                                         InputProps={{ 
                                             readOnly: editIndexEducation !== index,
                                             style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
@@ -235,32 +250,34 @@ export default function AdminQualification(props) {
                                         label="Calender"
                                         fullWidth
                                         />
-                                        {editIndexEducation!==index ? <button 
-                                            style={
-                                                {   
-                                                    color:darktheme ? 'var(--title-color)':'var(--container-color)',
-                                                    backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
-                                                }}
-                                            className="admin-skill-edit-btn button button--flex" 
-                                            onClick={() => toggleEditModeEducation(index)}>Edit</button> :
+                                        <div className='admin-qualification-single-item'>
+                                            {editIndexEducation!==index ? <button 
+                                                style={
+                                                    {   
+                                                        color:darktheme ? 'var(--title-color)':'var(--container-color)',
+                                                        backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
+                                                    }}
+                                                className="admin-qualification-edit-btn button button--flex" 
+                                                onClick={() => toggleEditModeEducation(index)}>Edit</button> :
+                                                <button 
+                                                style={
+                                                    {   
+                                                        color:darktheme ? 'var(--title-color)':'var(--container-color)',
+                                                        backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
+                                                    }}
+                                                className="admin-qualification-edit-btn button button--flex" 
+                                                onClick={onSubmitEducation}
+                                                >Done</button>}
                                             <button 
-                                            style={
-                                                {   
-                                                    color:darktheme ? 'var(--title-color)':'var(--container-color)',
-                                                    backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
-                                                }}
-                                            className="admin-skill-edit-btn button button--flex" 
-                                            onClick={onSubmitEducation}
-                                            >Done</button>}
-                                        <button 
-                                            style={
-                                                {   
-                                                    color:darktheme ? 'var(--title-color)':'var(--container-color)',
-                                                    backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
-                                                }}
-                                            className="admin-skill-delete-btn button button--flex" 
-                                            onClick={()=>onSubmitDeleteEducation(education._id)}
-                                            >Delete</button>
+                                                style={
+                                                    {   
+                                                        color:darktheme ? 'var(--title-color)':'var(--container-color)',
+                                                        backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
+                                                    }}
+                                                className="admin-qualification-delete-btn button button--flex" 
+                                                onClick={()=>onSubmitDeleteEducation(education._id)}
+                                                >Delete</button>
+                                            </div>
                                     </div>
                                 )
                             })}
@@ -271,6 +288,7 @@ export default function AdminQualification(props) {
                         <div style={{ margin: '1rem 0', padding: '.5rem 1rem' }}>
                             <div className='admin-qualification-new grid'>
                                 <TextField
+                                size={isMobile ? "small": ''} 
                                 InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                             InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
                                 value={newExperience} 
@@ -281,6 +299,7 @@ export default function AdminQualification(props) {
                                 fullWidth
                                 />
                                 <TextField
+                                size={isMobile ? "small": ''} 
                                 InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                             InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
                                 value={newExperienceSub} 
@@ -291,6 +310,7 @@ export default function AdminQualification(props) {
                                 fullWidth
                                 />
                                 <TextField
+                                size={isMobile ? "small": ''} 
                                 InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                             InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
                                 value={newExperienceCalender} 
@@ -300,22 +320,24 @@ export default function AdminQualification(props) {
                                 label="Calender"
                                 fullWidth
                                 />
-                                <button 
+                                <div className='admin-qualification-single-item'>
+                                    <button 
+                                        style={
+                                            {   
+                                                color:darktheme ? 'var(--title-color)':'var(--container-color)',
+                                                backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
+                                            }}
+                                        className="admin-qualification-add-btn button button--flex" 
+                                        type='submit'>Add</button>
+                                    <button 
                                     style={
                                         {   
                                             color:darktheme ? 'var(--title-color)':'var(--container-color)',
                                             backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
                                         }}
-                                    className="admin-qualification-add-btn button button--flex" 
-                                    type='submit'>Add</button>
-                                <button 
-                                style={
-                                    {   
-                                        color:darktheme ? 'var(--title-color)':'var(--container-color)',
-                                        backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
-                                    }}
-                                    className="admin-qualification-reset-btn button button--flex" 
-                                    onClick={resetAddedExperience}>Reset</button>
+                                        className="admin-qualification-reset-btn button button--flex" 
+                                        onClick={resetAddedExperience}>Reset</button>
+                                    </div>
                             </div>
                         </div>
                     </form>
@@ -328,6 +350,7 @@ export default function AdminQualification(props) {
                                 return (
                                     <div key={index} className='admin-qualification-list grid'>
                                         <TextField
+                                        size={isMobile ? "small": ''} 
                                         InputProps={{ 
                                             readOnly: editIndexExperience !== index,
                                             style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
@@ -340,6 +363,7 @@ export default function AdminQualification(props) {
                                         fullWidth
                                         />
                                         <TextField
+                                        size={isMobile ? "small": ''} 
                                         InputProps={{ 
                                             readOnly: editIndexExperience !== index,
                                             style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
@@ -352,6 +376,7 @@ export default function AdminQualification(props) {
                                         fullWidth
                                         />
                                         <TextField
+                                        size={isMobile ? "small": ''} 
                                         InputProps={{ 
                                             readOnly: editIndexExperience !== index,
                                             style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
@@ -363,32 +388,34 @@ export default function AdminQualification(props) {
                                         label="Calender"
                                         fullWidth
                                         />
-                                        {editIndexExperience!==index ? <button 
-                                            style={
-                                                {   
-                                                    color:darktheme ? 'var(--title-color)':'var(--container-color)',
-                                                    backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
-                                                }}
-                                            className="admin-skill-edit-btn button button--flex" 
-                                            onClick={() => toggleEditModeExperience(index)}>Edit</button> :
+                                        <div className='admin-qualification-single-item'>
+                                            {editIndexExperience!==index ? <button 
+                                                style={
+                                                    {   
+                                                        color:darktheme ? 'var(--title-color)':'var(--container-color)',
+                                                        backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
+                                                    }}
+                                                className="admin-qualification-edit-btn button button--flex" 
+                                                onClick={() => toggleEditModeExperience(index)}>Edit</button> :
+                                                <button 
+                                                style={
+                                                    {   
+                                                        color:darktheme ? 'var(--title-color)':'var(--container-color)',
+                                                        backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
+                                                    }}
+                                                className="admin-qualification-edit-btn button button--flex" 
+                                                onClick={onSubmitExperience}
+                                                >Done</button>}
                                             <button 
                                             style={
                                                 {   
                                                     color:darktheme ? 'var(--title-color)':'var(--container-color)',
                                                     backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
                                                 }}
-                                            className="admin-skill-edit-btn button button--flex" 
-                                            onClick={onSubmitExperience}
-                                            >Done</button>}
-                                        <button 
-                                        style={
-                                            {   
-                                                color:darktheme ? 'var(--title-color)':'var(--container-color)',
-                                                backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
-                                            }}
-                                            className="admin-skill-delete-btn button button--flex" 
-                                            onClick={()=>onSubmitDeleteExperience(experience._id)}
-                                            >Delete</button>
+                                                className="admin-qualification-delete-btn button button--flex" 
+                                                onClick={()=>onSubmitDeleteExperience(experience._id)}
+                                                >Delete</button>
+                                            </div>
                                     </div>
                                 )
                             })}
