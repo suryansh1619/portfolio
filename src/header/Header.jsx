@@ -74,7 +74,7 @@ export default function Header() {
                                 style={{
                                     color: darktheme ? "var(--container-color)" : "var(--title-color)"
                                 }}>
-                                <i className='uil uil-scenery nav-icon'></i>
+                                <i className='uil uil-setting nav-icon'></i>
                                 Setting
                             </Link>
                         </li>

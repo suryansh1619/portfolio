@@ -1,4 +1,4 @@
-import React,{useContext} from 'react'
+import React,{useContext,useState,useEffect} from 'react'
 import useInput from '../../hooks/useInput'
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
@@ -15,6 +15,13 @@ export default function AboutAdmin(props) {
     const [subtitle2, setSubtitle2] = useInput(aboutInfo.subtitle2);
     const {darktheme}=useContext(ThemeContext);
     const baseURL =process.env.REACT_APP_BACKEND_PORT || '';
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 576);
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 576);
+        };
+        window.addEventListener('resize', handleResize);
+    }, []);
     const onSubmitAbout=async(e)=>{
         e.preventDefault();
         const values={
@@ -68,6 +75,7 @@ export default function AboutAdmin(props) {
                     <form onSubmit={onSubmitAbout}>
                         <div style={{ margin: '1rem 0', padding: '.5rem 1rem' }}>
                             <TextField
+                            size={isMobile ? "small": ''}
                             InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                             InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
                             value={description} 
@@ -78,6 +86,7 @@ export default function AboutAdmin(props) {
                             fullWidth
                             />
                             <TextField
+                            size={isMobile ? "small": ''}
                             InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                             InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
                             value={buttonText} 
@@ -102,6 +111,7 @@ export default function AboutAdmin(props) {
                         <div style={{ margin: '1rem 0', padding: '.5rem 1rem' }}>
                             <div className='admin-about-list grid'>
                                 <TextField
+                                size={isMobile ? "small": ''}
                                 InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                 InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
                                 value={title1} 
@@ -112,6 +122,7 @@ export default function AboutAdmin(props) {
                                 fullWidth
                                 />
                                 <TextField
+                                size={isMobile ? "small": ''}
                                 InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                 InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
                                 value={subtitle1} 
@@ -122,6 +133,7 @@ export default function AboutAdmin(props) {
                                 fullWidth
                                 />
                                 <TextField
+                                size={isMobile ? "small": ''}
                                 InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                 InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
                                 value={title2} 
@@ -132,6 +144,7 @@ export default function AboutAdmin(props) {
                                 fullWidth
                                 />
                                 <TextField
+                                size={isMobile ? "small": ''}
                                 InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                 InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
                                 value={subtitle2} 

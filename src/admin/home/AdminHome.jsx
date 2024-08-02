@@ -1,4 +1,4 @@
-import React,{useContext, useState} from 'react'
+import React,{useContext, useState,useEffect} from 'react'
 import useInput from '../../hooks/useInput'
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
@@ -16,6 +16,13 @@ export default function AdminHome(props) {
     const [editIndex, setEditIndex] = useState(null);
     const {darktheme}=useContext(ThemeContext);
     const baseURL =process.env.REACT_APP_BACKEND_PORT || '';
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 576);
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 576);
+        };
+        window.addEventListener('resize', handleResize);
+    }, []);
     const onSubmitHomeData=async(e)=>{
         e.preventDefault();
         const values={
@@ -67,7 +74,8 @@ export default function AdminHome(props) {
                     }}>
                     <form onSubmit={onSubmitHomeData}>
                         <div style={{ margin: '1rem 0', padding: '.5rem 1rem'}}>
-                            <TextField 
+                            <TextField
+                            size={isMobile ? "small": ''} 
                             InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                             InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
                             value={firstName} 
@@ -78,8 +86,10 @@ export default function AdminHome(props) {
                             fullWidth
                             />
                             <TextField
+                            size={isMobile ? "small": ''}
                             InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                            InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}                            value={lastName} 
+                            InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}                            
+                            value={lastName} 
                             onChange={setLastName}
                             variant="outlined"
                             margin='normal'
@@ -87,6 +97,7 @@ export default function AdminHome(props) {
                             fullWidth
                             />
                             <TextField
+                            size={isMobile ? "small": ''}
                             InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                             InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
                             value={description} 
@@ -97,6 +108,7 @@ export default function AdminHome(props) {
                             fullWidth
                             />
                             <TextField
+                            size={isMobile ? "small": ''}
                             InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                             InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
                             value={buttonText} 
@@ -121,8 +133,9 @@ export default function AdminHome(props) {
                         <div style={{ margin: '1rem 0', padding: '.5rem 1rem' }}>
                             {social.map((social,index)=>{
                                 return(
-                                    <div key={index} className='admin-home-social-list grid'>
+                                    <div key={index} className={`admin-home-social-list grid`}>
                                         <TextField
+                                        size={isMobile ? "small": ''}
                                         InputProps={{ 
                                                 readOnly: editIndex !== index,
                                                 style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',
@@ -136,6 +149,7 @@ export default function AdminHome(props) {
                                         fullWidth
                                         />
                                         <TextField
+                                        size={isMobile ? "small": ''}
                                         InputProps={{ 
                                             readOnly: editIndex !== index,
                                             style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',
@@ -148,25 +162,27 @@ export default function AdminHome(props) {
                                         label={`${social.name} link`}
                                         fullWidth
                                         />
-                                        {editIndex!==index ? <button 
-                                            type="button"
-                                            style={
-                                                {   
-                                                    color:darktheme ? 'var(--title-color)':'var(--container-color)',
-                                                    backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
-                                                }}
-                                            className="admin-home-social-edit-btn button button--flex" 
-                                            onClick={() => toggleEditMode(index)}>Edit</button> :
-                                            <button 
-                                            type="button"
-                                            style={
-                                                {   
-                                                    color:darktheme ? 'var(--title-color)':'var(--container-color)',
-                                                    backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
-                                                }}
-                                            className="admin-home-social-edit-btn button button--flex" 
-                                            onClick={onSubmitHomeSocial}
-                                            >Done</button>}
+                                        <div className="admin-home-single-item">
+                                            {editIndex!==index ? <button 
+                                                type="button"
+                                                style={
+                                                    {   
+                                                        color:darktheme ? 'var(--title-color)':'var(--container-color)',
+                                                        backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
+                                                    }}
+                                                className="admin-home-social-edit-btn button button--flex" 
+                                                onClick={() => toggleEditMode(index)}>Edit</button> :
+                                                <button 
+                                                type="button"
+                                                style={
+                                                    {   
+                                                        color:darktheme ? 'var(--title-color)':'var(--container-color)',
+                                                        backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
+                                                    }}
+                                                className="admin-home-social-edit-btn button button--flex" 
+                                                onClick={onSubmitHomeSocial}
+                                                >Done</button>}
+                                        </div>
                                     </div>
                                 )
                             })}

@@ -58,7 +58,7 @@ export default function AdminHeader() {
                                 style={{
                                     color: darktheme ? "var(--container-color)" : "var(--title-color)"
                                 }}>
-                                <i className='uil uil-scenery admin-nav-icon'></i>
+                                <i className='uil uil-lightbulb-alt admin-nav-icon'></i>
                                 Skills
                             </Link>
                         </li>
@@ -69,7 +69,7 @@ export default function AdminHeader() {
                                 style={{
                                     color: darktheme ? "var(--container-color)" : "var(--title-color)"
                                 }}>
-                                <i className='uil uil-scenery admin-nav-icon'></i>
+                                <i className='uil uil-book-open admin-nav-icon'></i>
                                 Qualification
                             </Link>
                         </li>
@@ -91,7 +91,7 @@ export default function AdminHeader() {
                                 style={{
                                     color: darktheme ? "var(--container-color)" : "var(--title-color)"
                                 }}>
-                                <i className='uil uil-scenery admin-nav-icon'></i>
+                                <i className='uil uil-layers admin-nav-icon'></i>
                                 Footer
                             </Link>
                         </li>
@@ -102,7 +102,7 @@ export default function AdminHeader() {
                                 style={{
                                     color: darktheme ? "var(--container-color)" : "var(--title-color)"
                                 }}>
-                                <i className='uil uil-scenery admin-nav-icon'></i>
+                                <i className='uil uil-brush-alt admin-nav-icon'></i>
                                 Theme
                             </Link>
                         </li>

@@ -22,3 +22,50 @@
     width: 150px;
     top: 1rem;
 }
+
+@media screen and (max-width:992px) {
+    .admin-skill-list{
+        grid-template-columns: repeat(2,max-content);
+    }
+    .admin-skill-new{
+        grid-template-columns: repeat(2,max-content);
+    }
+    .admin-skill-edit-btn,
+    .admin-skill-delete-btn,
+    .admin-skill-add-btn,
+    .admin-skill-reset-btn{
+        margin-top: -1rem;
+    }
+    .admin-skill-edit-btn,
+    .admin-skill-delete-btn{
+        margin-bottom: 1rem;
+    }
+    .admin-skill-single-item{
+        display: flex;
+        justify-content: center;
+    }
+}
+@media screen and (max-width:576px) {
+    .admin-skill-single-field{
+        grid-column: span 2;
+    }
+    .admin-skill-edit-btn,
+    .admin-skill-delete-btn,
+    .admin-skill-add-btn,
+    .admin-skill-reset-btn{
+        margin-top: .5rem;
+    }
+    .admin-skill-new,
+    .admin-skill-list{
+        row-gap: 0rem;
+    }
+}
+@media screen and (max-width:400px) {
+    .admin-skill-edit-btn,
+    .admin-skill-delete-btn,
+    .admin-skill-add-btn,
+    .admin-skill-reset-btn{
+        width: 100px;
+        margin-top: .5rem;
+    }
+}

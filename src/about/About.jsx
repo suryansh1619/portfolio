@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import './about.css'
-import aboutImg from '../assets/about.jpg'
+import aboutImg from '../assets/suryansh.jpg'
 import Info from './Info'
 import { ThemeContext } from '../contexts/ThemeContext'
 

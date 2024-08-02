@@ -3,7 +3,6 @@ import { ThemeContext } from '../contexts/ThemeContext'
 
 export default function Data(props) {
     const {homeData}=props;
-    const firstName=homeData.firstName
     let [firstCharFirstName, ...restOfStringFirstName] = homeData.firstName.split('');
     let [firstCharLastName, ...restOfStringLastName] = homeData.lastName.split('');
     // firstChar=firstChar;

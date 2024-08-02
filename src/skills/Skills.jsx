@@ -23,7 +23,7 @@ export default function Skills(props) {
                     backgroundColor: darktheme ? 'rgba(255,255,255,0.05)' :"rgba(0,0,0,0.05)"
                 }}>
                 <div className="skills-box">
-                    <div className="skills-group">  
+                    <div className="skills-group grid">  
                         {skills.map((skill,index)=>{
                             return(
                                 <div key={index} className="skills-data">

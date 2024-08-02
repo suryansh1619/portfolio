@@ -11,3 +11,34 @@
     margin-top: 1rem ;
     justify-content: center;
 }
+
+
+@media screen and (max-width:576px) {
+    .admin-home-social-edit-btn{ 
+        margin-top: -1rem;
+        margin-bottom: 1rem;
+    }
+    .admin-home-social-list{
+        grid-template-columns: repeat(2,1fr);
+    }
+    .admin-home-single-item {
+        display: flex;
+        justify-content: center;
+        grid-column: span 2;
+    }
+}
+@media screen and (max-width:350px) {
+    .admin-home-social-edit-btn{ 
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+    .admin-home-social-list{
+        grid-template-columns: repeat(1,1fr);
+        row-gap: 0;
+    }
+    .admin-home-single-item {
+        display: flex;
+        justify-content: center;
+        grid-column: span 1;
+    }
+}

@@ -1,4 +1,4 @@
-import React,{useContext, useState} from 'react'
+import React,{useContext, useState,useEffect} from 'react'
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import useInputObject from '../../hooks/useInputObject';
@@ -13,6 +13,13 @@ export default function AdminSkill(props) {
     const [newSkill,setNewSkill,resetNewSkill]=useInput('');
     const [newSkillLevel,setNewSkillLevel,resetNewSkillLevel]=useInput('');
     const {darktheme}=useContext(ThemeContext)
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 576);
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 576);
+        };
+        window.addEventListener('resize', handleResize);
+    }, []);
     const baseURL =process.env.REACT_APP_BACKEND_PORT || '';
     const onSubmitSkill=async(e)=>{
         e.preventDefault();
@@ -71,51 +78,61 @@ export default function AdminSkill(props) {
         <section className='section admin-skill'
         style={{backgroundColor:!darktheme ? 'var(--container-color)':'var(--title-color)'}}>
             <div className='container admin-skill-container'>
-                <Paper style={{ margin: '1rem 0', padding: '.5rem 1rem',
+                <Paper style={{margin: '1rem 0', padding: '.5rem 1rem',
                         backgroundColor:!darktheme ? 'var(--container-color)':'var(--title-color)',
                         boxShadow: darktheme ? '0 4px 12px rgba(0, 0, 0, 0.5)' : '0 2px 8px rgba(0, 0, 0, 0.5)'
                     }}>
                     <form onSubmit={onSubmitNewSkill}>
                         <div style={{ margin: '1rem 0', padding: '.5rem 1rem' }}>
                             <div className='admin-skill-new grid'>
-                                <TextField
-                                InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                            InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                value={newSkill} 
-                                onChange={setNewSkill}
-                                variant="outlined"
-                                margin='normal'
-                                label="Name"
-                                fullWidth
-                                />
-                                <TextField
-                                InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                            InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                value={newSkillLevel} 
-                                onChange={setNewSkillLevel}
-                                variant="outlined"
-                                margin='normal'
-                                label="Level"
-                                fullWidth
-                                />
-                                <button 
-                                style={
-                                    {   
-                                        color:darktheme ? 'var(--title-color)':'var(--container-color)',
-                                        backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
-                                    }}
-                                    className="admin-skill-add-btn button button--flex" 
+                                <div className='admin-skill-single-field'>
+                                    <TextField
+                                    
+                                    InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                    InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
+                                    value={newSkill} 
+                                    onChange={setNewSkill}
                                     variant="outlined"
-                                    type='submit'>Add</button>
-                                <button 
-                                style={
-                                    {   
-                                        color:darktheme ? 'var(--title-color)':'var(--container-color)',
-                                        backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
-                                    }}
-                                    className="admin-skill-reset-btn button button--flex" 
+                                    margin='normal'
+                                    label="Name"
+                                    fullWidth
+                                    />
+                                    </div>
+                                    <div className='admin-skill-single-field'>
+                                    <TextField
+                                    size={isMobile ? "small": ''}
+                                    InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                    InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
+                                    value={newSkillLevel} 
+                                    onChange={setNewSkillLevel}
                                     variant="outlined"
-                                    onClick={resetNewSkills}>Reset</button>
+                                    margin='normal'
+                                    label="Level"
+                                    fullWidth
+                                    />
+                                </div>
+                                <div className="admin-skill-single-item">
+                                    <button 
+                                    style={
+                                        {   
+                                            color:darktheme ? 'var(--title-color)':'var(--container-color)',
+                                            backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
+                                        }}
+                                        className="admin-skill-add-btn button button--flex" 
+                                        variant="outlined"
+                                        type='submit'>Add</button>
+                                        </div>
+                                <div className="admin-skill-single-item">
+                                    <button 
+                                    style={
+                                        {   
+                                            color:darktheme ? 'var(--title-color)':'var(--container-color)',
+                                            backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
+                                        }}
+                                        className="admin-skill-reset-btn button button--flex" 
+                                        variant="outlined"
+                                        onClick={resetNewSkills}>Reset</button>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -127,30 +144,37 @@ export default function AdminSkill(props) {
                             {skill.map((skill,index)=>{
                                 return(
                                     <div key={index} className='admin-skill-list grid'>
-                                        <TextField
-                                        InputProps={{ 
-                                            readOnly: editIndex !== index,
-                                            style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                        value={skill.title} 
-                                        onChange={setSkill(index,'title')}
-                                        variant="outlined"
-                                        margin='normal'
-                                        label="Name"
-                                        fullWidth
-                                        />
-                                        <TextField
-                                        InputProps={{ 
-                                            readOnly: editIndex !== index,
-                                            style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                        value={skill.level} 
-                                        onChange={setSkill(index,'level')}
-                                        variant="outlined"
-                                        margin='normal'
-                                        label="Level"
-                                        fullWidth
-                                        />
+                                        <div className='admin-skill-single-field'>
+                                            <TextField
+                                            size={isMobile ? "small": ''}
+                                            InputProps={{ 
+                                                readOnly: editIndex !== index,
+                                                style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                            InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
+                                            value={skill.title} 
+                                            onChange={setSkill(index,'title')}
+                                            variant="outlined"
+                                            margin='normal'
+                                            label="Name"
+                                            fullWidth
+                                            />
+                                        </div>
+                                        <div className='admin-skill-single-field'>
+                                            <TextField
+                                            size={isMobile ? "small": ''}
+                                            InputProps={{ 
+                                                readOnly: editIndex !== index,
+                                                style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                            InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
+                                            value={skill.level} 
+                                            onChange={setSkill(index,'level')}
+                                            variant="outlined"
+                                            margin='normal'
+                                            label="Level"
+                                            fullWidth
+                                            />
+                                        </div>
+                                        <div className="admin-skill-single-item">
                                         {editIndex!==index ? <button 
                                             type="button"
                                             style={
@@ -170,6 +194,8 @@ export default function AdminSkill(props) {
                                             className="admin-skill-edit-btn button button--flex" 
                                             onClick={onSubmitSkill}
                                             >Done</button>}
+                                            </div>
+                                            <div className="admin-skill-single-item">
                                         <button 
                                             style={
                                             {   
@@ -178,6 +204,7 @@ export default function AdminSkill(props) {
                                             }}
                                             className="admin-skill-delete-btn button button--flex" 
                                             onClick={()=>onSubmitDeleteSkill(skill._id)}>Delete</button>
+                                            </div>
                                     </div>
                                 )
                             })}
