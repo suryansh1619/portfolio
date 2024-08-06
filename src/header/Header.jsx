@@ -67,17 +67,6 @@ export default function Header() {
                                 Projects
                             </Link>
                         </li>
-                        <li className='nav-item'>
-                            <Link 
-                                to='/setting' 
-                                className={`${location.pathname==='/setting' ? 'active-link' : ''} nav-link`}
-                                style={{
-                                    color: darktheme ? "var(--container-color)" : "var(--title-color)"
-                                }}>
-                                <i className='uil uil-setting nav-icon'></i>
-                                Setting
-                            </Link>
-                        </li>
                     </ul>
                     <i 
                         className='uil uil-times nav-close' 

@@ -3,6 +3,7 @@ import './home.css'
 import Social from './Social'
 import Data from './Data'
 import { ThemeContext } from '../contexts/ThemeContext'
+import suryanshImage from '../assets/suryansh.jpg';
 export default function Home(props) {
     const {homeData,homeSocial}=props;
     const { darktheme } = useContext(ThemeContext);
@@ -12,7 +13,7 @@ export default function Home(props) {
             <div className="home-container container grid">
                 <div className="home-content grid">
                     <Social homeSocial={homeSocial}/>
-                    <div className='home-img'></div>
+                    <img src={suryanshImage} className='home-img'/>
                     <Data homeData={homeData}/>
                 </div>
             </div>

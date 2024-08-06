@@ -5,6 +5,8 @@ import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import './adminAbout.css'
 import { ThemeContext } from '../../contexts/ThemeContext';
+import { AuthContext } from '../../contexts/AuthContext';
+import { Navigate } from 'react-router-dom';
 export default function AboutAdmin(props) {
     const {about,aboutInfo}=props;
     const [description, setDescription] = useInput(about.description);
@@ -14,6 +16,7 @@ export default function AboutAdmin(props) {
     const [title2, setTitle2] = useInput(aboutInfo.title2); 
     const [subtitle2, setSubtitle2] = useInput(aboutInfo.subtitle2);
     const {darktheme}=useContext(ThemeContext);
+    const {auth}=useContext(AuthContext);
     const baseURL =process.env.REACT_APP_BACKEND_PORT || '';
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 576);
     useEffect(() => {
@@ -30,10 +33,10 @@ export default function AboutAdmin(props) {
             _id: about._id
         }
         try{
-            const response=await axios.post(`${baseURL}/api/portfolio/about`,{
-                ...values,
-                _id:about._id
-            })
+            const response=await axios.post(`${baseURL}/api/portfolio/about`,
+                values,
+                {withCredentials: true}
+            )
             if(response.data.success){
                 console.log("data saved")
             }
@@ -49,13 +52,13 @@ export default function AboutAdmin(props) {
             subtitle1,
             title2,
             subtitle2,
-            _id: about._id
+            _id: aboutInfo._id
         }
         try{
-            const response=await axios.post(`${baseURL}/api/portfolio/aboutinfo`,{
-                ...values,
-                _id:aboutInfo._id
-            })
+            const response=await axios.post(`${baseURL}/api/portfolio/aboutinfo`,
+                values,
+                {withCredentials: true}
+            )
             if(response.data.success){
                 console.log("data saved")
             }
@@ -65,108 +68,110 @@ export default function AboutAdmin(props) {
         }
     }
     return (
-        <section className='section admin-about'
-        style={{backgroundColor:!darktheme ? 'var(--container-color)':'var(--title-color)'}}>
-            <div className='container admin-about-container'>
-                <Paper style={{ margin: '1rem 0', padding: '.5rem 1rem',
-                        backgroundColor:!darktheme ? 'var(--container-color)':'var(--title-color)',
-                        boxShadow: darktheme ? '0 4px 12px rgba(0, 0, 0, 0.5)' : '0 2px 8px rgba(0, 0, 0, 0.5)'
-                    }}>
-                    <form onSubmit={onSubmitAbout}>
-                        <div style={{ margin: '1rem 0', padding: '.5rem 1rem' }}>
-                            <TextField
-                            size={isMobile ? "small": ''}
-                            InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                            InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
-                            value={description} 
-                            onChange={setDescription}
-                            variant="outlined"
-                            margin='normal'
-                            label='Description'
-                            fullWidth
-                            />
-                            <TextField
-                            size={isMobile ? "small": ''}
-                            InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                            InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
-                            value={buttonText} 
-                            onChange={setButtonText}
-                            variant="outlined"
-                            margin='normal'
-                            label='Button Text'
-                            fullWidth
-                            />
-                            <button 
-                            style={
-                                {   
-                                    color:darktheme ? 'var(--title-color)':'var(--container-color)',
-                                    backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)',
-                                    marginTop:"1rem"
-                                }}
-                            type="submit" className='admin-about-save-btn button button--flex'>Save</button>
-                        </div>
-                    </form>
-                    <hr/>
-                    <form onSubmit={onSubmitAboutInfo}>
-                        <div style={{ margin: '1rem 0', padding: '.5rem 1rem' }}>
-                            <div className='admin-about-list grid'>
+        auth.isAuthenticated ?
+            <section className='section admin-about'
+            style={{backgroundColor:!darktheme ? 'var(--container-color)':'var(--title-color)'}}>
+                <div className='container admin-about-container'>
+                    <Paper style={{ margin: '1rem 0', padding: '.5rem 1rem',
+                            backgroundColor:!darktheme ? 'var(--container-color)':'var(--title-color)',
+                            boxShadow: darktheme ? '0 4px 12px rgba(0, 0, 0, 0.5)' : '0 2px 8px rgba(0, 0, 0, 0.5)'
+                        }}>
+                        <form onSubmit={onSubmitAbout}>
+                            <div style={{ margin: '1rem 0', padding: '.5rem 1rem' }}>
                                 <TextField
                                 size={isMobile ? "small": ''}
                                 InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                 InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
-                                value={title1} 
-                                onChange={setTitle1}
+                                value={description} 
+                                onChange={setDescription}
                                 variant="outlined"
                                 margin='normal'
-                                label="Title 1"
+                                label='Description'
                                 fullWidth
                                 />
                                 <TextField
                                 size={isMobile ? "small": ''}
                                 InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                 InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
-                                value={subtitle1} 
-                                onChange={setSubtitle1}
+                                value={buttonText} 
+                                onChange={setButtonText}
                                 variant="outlined"
                                 margin='normal'
-                                label="SubTitle 1"
+                                label='Button Text'
                                 fullWidth
                                 />
-                                <TextField
-                                size={isMobile ? "small": ''}
-                                InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                                InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
-                                value={title2} 
-                                onChange={setTitle2}
-                                variant="outlined"
-                                margin='normal'
-                                label="Title 2"
-                                fullWidth
-                                />
-                                <TextField
-                                size={isMobile ? "small": ''}
-                                InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                                InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
-                                value={subtitle2} 
-                                onChange={setSubtitle2}
-                                variant="outlined"
-                                margin='normal'
-                                label="SubTitle 2"
-                                fullWidth
-                                />
+                                <button 
+                                style={
+                                    {   
+                                        color:darktheme ? 'var(--title-color)':'var(--container-color)',
+                                        backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)',
+                                        marginTop:"1rem"
+                                    }}
+                                type="submit" className='admin-about-save-btn button button--flex'>Save</button>
                             </div>
-                            <button 
-                            style={
-                                {   
-                                    color:darktheme ? 'var(--title-color)':'var(--container-color)',
-                                    backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)',
-                                    marginTop:"1rem"
-                                }}
-                            type="submit" className='admin-about-save-btn button button--flex'>Save</button>
-                        </div>
-                    </form>
-                </Paper>
-            </div>
-        </section>
+                        </form>
+                        <hr/>
+                        <form onSubmit={onSubmitAboutInfo}>
+                            <div style={{ margin: '1rem 0', padding: '.5rem 1rem' }}>
+                                <div className='admin-about-list grid'>
+                                    <TextField
+                                    size={isMobile ? "small": ''}
+                                    InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                    InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
+                                    value={title1} 
+                                    onChange={setTitle1}
+                                    variant="outlined"
+                                    margin='normal'
+                                    label="Title 1"
+                                    fullWidth
+                                    />
+                                    <TextField
+                                    size={isMobile ? "small": ''}
+                                    InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                    InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
+                                    value={subtitle1} 
+                                    onChange={setSubtitle1}
+                                    variant="outlined"
+                                    margin='normal'
+                                    label="SubTitle 1"
+                                    fullWidth
+                                    />
+                                    <TextField
+                                    size={isMobile ? "small": ''}
+                                    InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                    InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
+                                    value={title2} 
+                                    onChange={setTitle2}
+                                    variant="outlined"
+                                    margin='normal'
+                                    label="Title 2"
+                                    fullWidth
+                                    />
+                                    <TextField
+                                    size={isMobile ? "small": ''}
+                                    InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                    InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
+                                    value={subtitle2} 
+                                    onChange={setSubtitle2}
+                                    variant="outlined"
+                                    margin='normal'
+                                    label="SubTitle 2"
+                                    fullWidth
+                                    />
+                                </div>
+                                <button 
+                                style={
+                                    {   
+                                        color:darktheme ? 'var(--title-color)':'var(--container-color)',
+                                        backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)',
+                                        marginTop:"1rem"
+                                    }}
+                                type="submit" className='admin-about-save-btn button button--flex'>Save</button>
+                            </div>
+                        </form>
+                    </Paper>
+                </div>
+            </section>
+            : <Navigate to="/admin/login"/>
     )
 }

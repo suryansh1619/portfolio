@@ -39,7 +39,7 @@ export default function Qualification(props) {
                         {qualificationEducation.map((education,index)=>{
                             if(index%2===0){
                                 return(
-                                    <div className="qualification-data">
+                                    <div key={education._id} className="qualification-data">
                                         <div>
                                             <h3 
                                                 className="qualification-title"
@@ -62,7 +62,7 @@ export default function Qualification(props) {
                             }
                             else{
                                 return(
-                                    <div className="qualification-data">
+                                    <div key={education._id} className="qualification-data">
                                         <div></div>
                                         <div>
                                             <span className="qualification-rounder"></span>
@@ -90,7 +90,7 @@ export default function Qualification(props) {
                     {qualificationExperience.map((experience,index)=>{
                             if(index%2!==0){
                                 return(
-                                    <div className="qualification-data">
+                                    <div key={experience._id} className="qualification-data">
                                         <div>
                                             <h3 
                                                 className="qualification-title"
@@ -113,7 +113,7 @@ export default function Qualification(props) {
                             }
                             else{
                                 return(
-                                    <div className="qualification-data">
+                                    <div key={experience._id} className="qualification-data">
                                         <div></div>
                                         <div>
                                             <span className="qualification-rounder"></span>

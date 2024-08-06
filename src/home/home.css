@@ -22,6 +22,7 @@
 }
 .home-social-icon:hover{
     color: var(--first-color) !important;
+    transform: scale(1.25);
 }
 
 .home-title{
@@ -44,11 +45,10 @@
 }
 
 .home-img{
-    background: url('../assets/suryansh.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    box-shadow: inset 0 0 0 9px rgb(255 255 255/30%);
+    border: 7px solid rgb(255 255 255/30%);
     order: 1;
     justify-self:center ;
     width: 300px;

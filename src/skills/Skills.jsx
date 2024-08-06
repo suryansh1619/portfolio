@@ -1,10 +1,18 @@
-import React, { useContext } from 'react'
+import React, { useContext,useState } from 'react'
 import './skills.css'
 import { ThemeContext } from '../contexts/ThemeContext'
 
 export default function Skills(props) {
     const {skills}=props;
     const {darktheme}=useContext(ThemeContext);
+    const [hoveredId, setHoveredId] = useState(null);
+    const handleMouseEnter = (id) => {
+        setHoveredId(id);
+    };
+    const handleMouseLeave = () => {
+        setHoveredId(null);
+    };
+    const textColor=darktheme ? 'var(--title-color)':'var(--container-color)'
     return (
         <section 
             className="skills section"
@@ -24,19 +32,22 @@ export default function Skills(props) {
                 }}>
                 <div className="skills-box">
                     <div className="skills-group grid">  
-                        {skills.map((skill,index)=>{
+                        {skills.map((skill)=>{
                             return(
-                                <div key={index} className="skills-data">
-                                    <i 
-                                        className="bx bx-badge-check"
-                                        style={{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}></i>
+                                <div key={skill._id} className="skills-data"
+                                    onMouseEnter={() => handleMouseEnter(skill._id)}
+                                    onMouseLeave={handleMouseLeave}>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
                                     <div>
-                                        <h3 
+                                        <h3
                                             className="skills-name"
-                                            style={{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}>{skill.title}</h3>
-                                        <span 
+                                            style={{color:hoveredId===skill._id ? textColor:''}}>{skill.title}</h3>
+                                        <h5
                                             className="skills-level"
-                                            style={{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}>{skill.level}</span>
+                                            style={{color:hoveredId===skill._id ? textColor:''}}>{skill.level}</h5>
                                     </div>
                                 </div>)})}
                     </div>

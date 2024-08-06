@@ -9,7 +9,7 @@ export default function Social(props) {
             {homeSocial.map((social)=>{
                 return(
                     <a 
-                        key={social.id}
+                        key={social._id}
                         href={social.link}     
                         className='home-social-icon' 
                         style={{

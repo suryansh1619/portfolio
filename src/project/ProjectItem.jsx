@@ -40,7 +40,7 @@ export default function ProjectItem(props) {
                         <ul className="modal-list grid">
                             <li className="modal-item">
                                 <span className="item-icon">
-                                    <i className="uil uil-brackets-curly"></i>
+                                    <i className="uil uil-check-circle"></i>
                                 </span>
                                 <div>
                                     <span 
@@ -48,66 +48,70 @@ export default function ProjectItem(props) {
                                         style={{
                                             color: darktheme ? 'var(--contanier-color)' :"var(--title-color)"
                                         }}>{project.title1}</span>
+                                    <span> : </span>
                                     <span 
                                         className="item-details"
                                         style={{
                                             color: darktheme ? 'var(--contanier-color)' :"var(--title-color)"
                                         }}
-                                        >{project.discription1}</span>
+                                        >{project.description1}</span>
                                 </div>
                             </li>
                             <li className="modal-item">
                                 <span className="item-icon">
-                                    <i className="uil uil-brackets-curly"></i>
+                                    <i className="uil uil-check-circle"></i>
                                 </span>
                                 <div>
                                     <span 
                                         className="item-title"
                                         style={{
                                             color: darktheme ? 'var(--contanier-color)' :"var(--title-color)"
-                                        }}>{project.title1}</span>
+                                        }}>{project.title2}</span>
+                                    <span> : </span>
                                     <span 
                                         className="item-details"
                                         style={{
                                             color: darktheme ? 'var(--contanier-color)' :"var(--title-color)"
                                         }}
-                                        >{project.discription1}</span>
+                                        >{project.description2}</span>
                                 </div>
                             </li>
                             <li className="modal-item">
                                 <span className="item-icon">
-                                    <i className="uil uil-brackets-curly"></i>
+                                    <i className="uil uil-check-circle"></i>
                                 </span>
                                 <div>
                                     <span 
                                         className="item-title"
                                         style={{
                                             color: darktheme ? 'var(--contanier-color)' :"var(--title-color)"
-                                        }}>{project.title1}</span>
+                                        }}>{project.title3}</span>
+                                    <span> : </span>
                                     <span 
                                         className="item-details"
                                         style={{
                                             color: darktheme ? 'var(--contanier-color)' :"var(--title-color)"
                                         }}
-                                        >{project.discription1}</span>
+                                        >{project.description3}</span>
                                 </div>
                             </li>
                             <li className="modal-item">
                                 <span className="item-icon">
-                                    <i className="uil uil-brackets-curly"></i>
+                                    <i className="uil uil-check-circle"></i>
                                 </span>
                                 <div>
                                     <span 
                                         className="item-title"
                                         style={{
                                             color: darktheme ? 'var(--contanier-color)' :"var(--title-color)"
-                                        }}>{project.title1}</span>
+                                        }}>{project.title4}</span>
+                                    <span> : </span>
                                     <span 
                                         className="item-details"
                                         style={{
                                             color: darktheme ? 'var(--contanier-color)' :"var(--title-color)"
                                         }}
-                                        >{project.discription1}</span>
+                                        >{project.description4}</span>
                                 </div>
                             </li>
                         </ul>

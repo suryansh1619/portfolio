@@ -17,7 +17,7 @@ export default function Footer(props) {
                 {footers.map((footer,index)=>{
                     return(
                         <a 
-                            key={index}
+                            key={footer._id}
                             href={footer.link}
                             className='footer-social-icon' 
                             style={{backgroundColor: !darktheme ?  "var(--title-color)" : "var(--container-color)",

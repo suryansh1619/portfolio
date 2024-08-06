@@ -1,12 +1,15 @@
 import React, { useContext, useState,useEffect } from 'react'
 import "./adminHeader.css";
 import useToggle from '../../hooks/usetoggle'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../contexts/ThemeContext';
+import axios from 'axios';
 export default function AdminHeader() {
     const[toggle,showMenu]=useToggle(false);
     const location=useLocation();
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const baseURL =process.env.REACT_APP_BACKEND_PORT || '';
+    const navigate=useNavigate()
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth <= 768);
@@ -14,6 +17,20 @@ export default function AdminHeader() {
         window.addEventListener('resize', handleResize);
     }, []);
     const {darktheme}=useContext(ThemeContext);
+
+    const handleLogout=async()=>{
+        try{
+            const response=await axios.post(`${baseURL}/api/user/logout`,
+                {},
+                {withCredentials:true}
+            )
+            navigate('/')
+            console.log(response.data.message);
+        }
+        catch (err) {
+            console.error('Logout failed:', err);
+        }
+    }
     return (
         <header className='admin-header'
         style={{backgroundColor: darktheme ?  "var(--title-color)" : "var(--container-color)"
@@ -105,6 +122,17 @@ export default function AdminHeader() {
                                 <i className='uil uil-brush-alt admin-nav-icon'></i>
                                 Theme
                             </Link>
+                        </li>
+                        <li className='admin-nav-item'>
+                            <div 
+                                onClick={()=>handleLogout()}
+                                className='admin-nav-link'
+                                style={{
+                                    color: darktheme ? "var(--container-color)" : "var(--title-color)"
+                                }}>
+                                <i className='uil uil-brush-alt admin-nav-icon'></i>
+                                Log Out
+                            </div>
                         </li>
                     </ul>
                     <i 

@@ -1,7 +1,6 @@
 const router=require('express').Router();
 const {HomeData ,HomeSocial ,About ,AboutInfo ,Footer ,ProjectsProject  ,QualificationEducation ,QualificationExperience ,Skills ,Theme}=require('../models/portfolioModel');
-
-
+const {jwtauth}=require('../jwt')
 router.get('/data',async(req,res)=>{
     try{
         const homeData=await HomeData.find();
@@ -33,7 +32,7 @@ router.get('/data',async(req,res)=>{
     }
 })
 
-router.post('/homedata',async(req,res)=>{
+router.post('/homedata',jwtauth,async(req,res)=>{
     try{
         const data=await HomeData.findByIdAndUpdate(
             { _id:req.body._id},
@@ -48,7 +47,7 @@ router.post('/homedata',async(req,res)=>{
     }
 })
 
-router.post('/homesocial',async(req,res)=>{
+router.post('/homesocial',jwtauth,async(req,res)=>{
     try{
         const data=await HomeSocial.findByIdAndUpdate(
             { _id:req.body._id},
@@ -63,7 +62,7 @@ router.post('/homesocial',async(req,res)=>{
     }
 })
 
-router.post('/about',async(req,res)=>{
+router.post('/about',jwtauth,async(req,res)=>{
     try{
         const data=await About.findByIdAndUpdate(
             { _id:req.body._id},
@@ -78,7 +77,7 @@ router.post('/about',async(req,res)=>{
     }
 })
 
-router.post('/aboutinfo',async(req,res)=>{
+router.post('/aboutinfo',jwtauth,async(req,res)=>{
     try{
         const data=await AboutInfo.findByIdAndUpdate(
             { _id:req.body._id},
@@ -93,7 +92,7 @@ router.post('/aboutinfo',async(req,res)=>{
     }
 })
 
-router.post('/skills',async(req,res)=>{
+router.post('/skills',jwtauth,async(req,res)=>{
     try{
         const data=await Skills.findByIdAndUpdate(
             { _id:req.body._id},
@@ -108,7 +107,7 @@ router.post('/skills',async(req,res)=>{
     }
 })
 
-router.post('/skills/add', async (req, res) => {
+router.post('/skills/add', jwtauth,async (req, res) => {
     try {
         const { title, level } = req.body;
         const newSkill = new Skills({title,level});
@@ -123,7 +122,7 @@ router.post('/skills/add', async (req, res) => {
     }
 });
 
-router.delete('/skills/:id',async(req,res)=>{
+router.delete('/skills/:id',jwtauth,async(req,res)=>{
     try{
         const {id}=req.params;
         const deleteSkill=await Skills.findByIdAndDelete(id);
@@ -138,7 +137,7 @@ router.delete('/skills/:id',async(req,res)=>{
     }
 })
 
-router.post('/qualification/education',async(req,res)=>{
+router.post('/qualification/education',jwtauth,async(req,res)=>{
     try{
         const data=await QualificationEducation.findByIdAndUpdate(
             { _id:req.body._id},
@@ -153,7 +152,7 @@ router.post('/qualification/education',async(req,res)=>{
     }
 })
 
-router.post('/qualification/education/add', async (req, res) => {
+router.post('/qualification/education/add', jwtauth,async (req, res) => {
     try {
         const { title, subtitle,calender } = req.body;
         const newEducation = new QualificationEducation({title,subtitle,calender});
@@ -168,7 +167,7 @@ router.post('/qualification/education/add', async (req, res) => {
     }
 });
 
-router.delete('/qualification/education/:id',async(req,res)=>{
+router.delete('/qualification/education/:id',jwtauth,async(req,res)=>{
     try{
         const {id}=req.params;
         const deleteEducation=await QualificationEducation.findByIdAndDelete(id);
@@ -183,7 +182,7 @@ router.delete('/qualification/education/:id',async(req,res)=>{
     }
 })
 
-router.post('/qualification/experience',async(req,res)=>{
+router.post('/qualification/experience',jwtauth,async(req,res)=>{
     try{
         const data=await QualificationExperience.findByIdAndUpdate(
             { _id:req.body._id},
@@ -198,7 +197,7 @@ router.post('/qualification/experience',async(req,res)=>{
     }
 })
 
-router.post('/qualification/experience/add', async (req, res) => {
+router.post('/qualification/experience/add', jwtauth,async (req, res) => {
     try {
         const { title, subtitle,calender } = req.body;
         const newExperience = new QualificationExperience({title,subtitle,calender});
@@ -212,7 +211,7 @@ router.post('/qualification/experience/add', async (req, res) => {
     }
 });
 
-router.delete('/qualification/experience/:id',async(req,res)=>{
+router.delete('/qualification/experience/:id',jwtauth,async(req,res)=>{
     try{
         const {id}=req.params;
         const deleteExperience=await QualificationExperience.findByIdAndDelete(id);
@@ -227,7 +226,7 @@ router.delete('/qualification/experience/:id',async(req,res)=>{
     }
 })
 
-router.post('/footers',async(req,res)=>{
+router.post('/footers',jwtauth,async(req,res)=>{
     try{
         const data=await Footer.findByIdAndUpdate(
             {_id:req.body._id},
@@ -242,7 +241,7 @@ router.post('/footers',async(req,res)=>{
     }
 })
 
-router.post('/footers/add',async(req,res)=>{
+router.post('/footers/add',jwtauth,async(req,res)=>{
     try{
         const newFooter=new Footer(req.body);
         await newFooter.save();
@@ -254,7 +253,7 @@ router.post('/footers/add',async(req,res)=>{
     }
 })
 
-router.delete('/footers/:id',async(req,res)=>{
+router.delete('/footers/:id',jwtauth,async(req,res)=>{
     try{
         const {id}=req.params;
         const deleteFooter=await Footer.findByIdAndDelete(id);
@@ -269,7 +268,7 @@ router.delete('/footers/:id',async(req,res)=>{
     }
 })
 
-router.post('/projects',async(req,res)=>{
+router.post('/projects',jwtauth,async(req,res)=>{
     try{
         const data=await ProjectsProject.findByIdAndUpdate(
             {_id:req.body._id},
@@ -284,7 +283,7 @@ router.post('/projects',async(req,res)=>{
     }
 })
 
-router.post('/projects/add',async(req,res)=>{
+router.post('/projects/add',jwtauth,async(req,res)=>{
     try{
         const newProject=new ProjectsProject(req.body);
         await newProject.save();
@@ -296,7 +295,7 @@ router.post('/projects/add',async(req,res)=>{
     }
 })
 
-router.delete('/projects/:id',async(req,res)=>{
+router.delete('/projects/:id',jwtauth,async(req,res)=>{
     try{
         const {id}=req.params;
         const deleteProject=await ProjectsProject.findByIdAndDelete(id);
@@ -311,7 +310,7 @@ router.delete('/projects/:id',async(req,res)=>{
     }
 })
 
-router.post('/themes',async(req,res)=>{
+router.post('/themes',jwtauth,async(req,res)=>{
     try{
         const data=await Theme.findByIdAndUpdate(
             {_id:req.body._id},
@@ -326,7 +325,22 @@ router.post('/themes',async(req,res)=>{
     }
 })
 
-router.post('/themes/add',async(req,res)=>{
+router.post('/themes/change',async(req,res)=>{
+    try{
+        const data=await Theme.findByIdAndUpdate(
+            {_id:req.body._id},
+            req.body,
+            {new:true}
+        )
+        console.log('Theme updated');
+        res.status(200).json(data);
+    }
+    catch(err){
+        res.status(500).json(err);
+    }
+})
+
+router.post('/themes/add',jwtauth,async(req,res)=>{
     try{
         const newTheme=new Theme(req.body);
         await newTheme.save();
@@ -338,7 +352,7 @@ router.post('/themes/add',async(req,res)=>{
     }
 })
 
-router.delete('/themes/:id',async(req,res)=>{
+router.delete('/themes/:id',jwtauth,async(req,res)=>{
     try{
         const {id}=req.params;
         const deleteTheme=await Theme.findByIdAndDelete(id);

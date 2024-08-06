@@ -18,7 +18,7 @@ export default function Projects(props) {
             className="section-title"
             style={{
                 color:darktheme ? 'var(--container-color)':'var(--title-color)'
-            }}>Portfolio</h2>
+            }}><span>P</span>rojects</h2>
         <h4 
             className="section-subtitle"
             style={{

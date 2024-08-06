@@ -28,7 +28,9 @@ export default function About(props) {
                         style={{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}>
                         {about.description}
                     </p>
-                    <button
+                    <a
+                        href="/suryansh.jpg"
+                        download="suryansh.jpg"
                         className="button button--flex"
                         style={{backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)',
                             color:darktheme ? 'var(--title-color)':'var(--container-color)'
@@ -59,7 +61,7 @@ export default function About(props) {
                             fill={darktheme ? 'var(--title-color)':'var(--container-color)'}
                             ></path>
                         </svg>
-                    </button>
+                    </a>
                 </div>
             </div>
         </section>
