@@ -8,7 +8,10 @@ const userRoutes=require('./routes/userRoutes')
 const app=express();
 app.use(bodyparser.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+    origin:"https://portfolio-nine-sable-21.vercel.app",
+    credentials:true
+}));
 app.use(express.json());
 
 const PORT=process.env.PORT || 5000;
