@@ -9,7 +9,7 @@ const app=express();
 app.use(bodyparser.json());
 app.use(cookieParser());
 app.use(cors({
-    origin:"https://portfolio-nine-sable-21.vercel.app",
+    origin:"https://portfolio-nine-sable-21.vercel.app" || "http://localhost:3000",
     credentials:true
 }));
 app.use(express.json());
