@@ -8,7 +8,9 @@ export const AuthProvider = ({ children }) => {
     const baseURL =process.env.REACT_APP_BACKEND_PORT || '';
     const checkAuth = async () => {
         try {
+            console.log(auth);
             const response = await axios.get(`${baseURL}/api/user/check/auth`, { withCredentials: true });
+            console.log(auth,auth);
             setAuth({ isAuthenticated: true, user: response.data.user });
         } catch (error) {
             setAuth({ isAuthenticated: false, user: null });
