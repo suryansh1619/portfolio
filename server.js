@@ -8,9 +8,7 @@ const userRoutes=require('./routes/userRoutes')
 const app=express();
 app.use(bodyparser.json());
 app.use(cookieParser());
-app.use(cors({
-    credentials:true
-}));
+app.use(cors());
 app.use(express.json());
 
 const PORT=process.env.PORT || 5000;
