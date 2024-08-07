@@ -35,7 +35,6 @@ export default function AdminLogin() {
                 {withCredentials: true}
             )
             console.log("Res", response);
-            
             await checkAuth()
             console.log("data fetched")
             navigate('/admin/home'); 
