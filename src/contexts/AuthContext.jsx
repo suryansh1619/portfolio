@@ -9,9 +9,9 @@ export const AuthProvider = ({ children }) => {
     const checkAuth = async () => {
         try {
             const response = await axios.get(`${baseURL}/api/user/check/auth`, { withCredentials: true });
-            console.log(response)
             setAuth({ isAuthenticated: true, user: response.data.user });
         } catch (error) {
+            console.error("Authentication check failed:", error);
             setAuth({ isAuthenticated: false, user: null });
         }
     };

@@ -34,10 +34,9 @@ router.post('/login', async (req, res) => {
             email: user.email
         }
         const token = generatetoken(payload);
-        res.cookie('token', token, { httpOnly: true, sameSite: 'Lax', expires:new Date(
+        res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'Lax', expires:new Date(
             Date.now()+60*60*1000
         )  })
-        console.log(req.cookies.token)
         res.status(200).json({ message: 'Login successful' });
     }
     catch (err) {
@@ -48,7 +47,7 @@ router.post('/login', async (req, res) => {
 
 router.post('/logout', async (req, res) => {
     try {
-        res.cookie('token', '', { httpOnly: true, sameSite: 'Lax', expires: new Date(0) });
+        res.cookie('token', '', { httpOnly: true, secure: true, sameSite: 'Lax', expires: new Date(0) });
         res.status(200).json({ message: 'Logout successful' });
     }
     catch (err) {
