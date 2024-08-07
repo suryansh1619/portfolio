@@ -34,6 +34,7 @@ export default function AdminLogin() {
                 values,
                 {withCredentials: true}
             )
+            checkAuth()
             console.log("Res", response);
             console.log("data fetched")
             navigate('/admin/home'); 
@@ -42,7 +43,6 @@ export default function AdminLogin() {
             console.log(err)
         }
     }
-    checkAuth()
     return (
         <div 
             className='section admin-login'
