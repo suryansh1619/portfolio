@@ -57,12 +57,7 @@ router.post('/logout',async(req,res)=>{
 })
 
 router.get('/check/auth', jwtauth, (req, res) => {
-    try {
-        res.status(200).json({ user: req.user });
-    } catch (err) {
-        console.error('Error in /check/auth route:', err);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
+    res.status(200).json({ user: req.user });
 });
 
 module.exports=router;
