@@ -13,10 +13,9 @@ app.use(morgan('combined'));
 app.use(bodyparser.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: "https://portfolio-nine-sable-21.vercel.app/",
+    origin: "https://portfolio-nine-sable-21.vercel.app",
     credentials: true
 }));
-// app.use(cors());
 app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
