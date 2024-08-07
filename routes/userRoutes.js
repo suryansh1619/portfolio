@@ -35,6 +35,8 @@ router.post('/login',async(req,res)=>{
         }
         const token=generatetoken(payload);
         res.cookie('token',token,{httpOnly:true,secure: true,sameSite:'Lax',maxAge:600000})
+        console.log(token);
+        console.log(req.cookies.token)
         res.status(200).json({ message: 'Login successful'});
     }
     catch(err){
