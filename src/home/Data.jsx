@@ -5,7 +5,6 @@ export default function Data(props) {
     const {homeData}=props;
     let [firstCharFirstName, ...restOfStringFirstName] = homeData.firstName.split('');
     let [firstCharLastName, ...restOfStringLastName] = homeData.lastName.split('');
-    // firstChar=firstChar;
     const {darktheme}=useContext(ThemeContext)
     return (
         <div className="home-data">
