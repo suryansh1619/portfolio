@@ -5,7 +5,7 @@ import Qualification from './qualification/Qualification';
 import Footer from './footer/Footer'
 
 export default function AboutInfo(props) {
-    const {about,aboutInfo,qualificationEducation,qualificationExperience,skills,footers}=props
+    const {about,aboutInfo,qualificationEducation,qualificationAchievement,skills,footers}=props
     return (
         <>
             <About 
@@ -15,7 +15,7 @@ export default function AboutInfo(props) {
                 skills={skills}  />
             <Qualification
                 qualificationEducation={qualificationEducation}
-                qualificationExperience={qualificationExperience}/>
+                qualificationAchievement={qualificationAchievement}/>
             <Footer
                 footers={footers}/>
         </>

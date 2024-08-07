@@ -4,17 +4,16 @@ import TextField from '@mui/material/TextField';
 import useInputObject from '../../hooks/useInputObject';
 import useInput from '../../hooks/useInput';
 import './adminQualification.css'
-import { Button } from '@mui/material';
 import axios from 'axios';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { AuthContext } from '../../contexts/AuthContext';
 import { Navigate } from 'react-router-dom';
 export default function AdminQualification(props) {
-    const {qualificationEducation,qualificationExperience}=props;
+    const {qualificationEducation,qualificationAchievement}=props;
     const [education,setEducation]=useInputObject(qualificationEducation);
-    const [experience,setExperience]=useInputObject(qualificationExperience);
+    const [achievement,setAchievement]=useInputObject(qualificationAchievement);
     const [editIndexEducation, setEditIndexEducation] = useState(null);
-    const [editIndexExperience, setEditIndexExperience] = useState(null);
+    const [editIndexAchievement, setEditIndexAchievement] = useState(null);
     const {darktheme}=useContext(ThemeContext)
     const {auth}=useContext(AuthContext)
     const baseURL =process.env.REACT_APP_BACKEND_PORT || '';
@@ -29,9 +28,9 @@ export default function AdminQualification(props) {
     const [newEducation,setNewEducation,resetNewEducation]=useInput('');
     const [newEducationSub,setNewEducationSub,resetNewEducationSub]=useInput('');
     const [newEducationCalender,setNewEducationCalender,resetNewEducationCalender]=useInput('');
-    const [newExperience,setNewExperience,resetNewExperience]=useInput('');
-    const [newExperienceSub,setNewExperienceSub,resetNewExperienceSub]=useInput('');
-    const [newExperienceCalender,setNewExperienceCalender,resetNewExperienceCalender]=useInput('');
+    const [newAchievement,setNewAchievement,resetNewAchievement]=useInput('');
+    const [newAchievementSub,setNewAchievementSub,resetNewAchievementSub]=useInput('');
+    const [newAchievementCalender,setNewAchievementCalender,resetNewAchievementCalender]=useInput('');
 
     const onSubmitNewEducation=async(e)=>{
         e.preventDefault();
@@ -54,21 +53,21 @@ export default function AdminQualification(props) {
         }
     }
 
-    const onSubmitNewExperience=async(e)=>{
+    const onSubmitNewAchievements=async(e)=>{
         e.preventDefault();
-        if (!newExperience || !newExperienceSub || !newExperienceCalender) return;
+        if (!newAchievement || !newAchievementSub || !newAchievementCalender) return;
         const values={
-            title:newExperience,
-            subtitle:newExperienceSub,
-            calender:newExperienceCalender
+            title:newAchievement,
+            subtitle:newAchievementSub,
+            calender:newAchievementCalender
         }
         try{
-            const response=await axios.post(`${baseURL}/api/portfolio/qualification/experience/add`,
+            const response=await axios.post(`${baseURL}/api/portfolio/qualification/achievement/add`,
                 values,
                 {withCredentials: true}
             )
             console.log("New Skill Added")
-            resetAddedExperience();
+            resetAddedAchievements();
         }
         catch(err){
             console.log(err);
@@ -93,17 +92,17 @@ export default function AdminQualification(props) {
         }
     }
 
-    const onSubmitExperience=async(e)=>{
+    const onSubmitAchievement=async(e)=>{
         e.preventDefault();
-        if(editIndexExperience===null) return ;
-        const values=experience[editIndexExperience];
+        if(editIndexAchievement===null) return ;
+        const values=achievement[editIndexAchievement];
         try{
-            const response=await axios.post(`${baseURL}/api/portfolio/qualification/experience`,
+            const response=await axios.post(`${baseURL}/api/portfolio/qualification/achievement`,
                 values,
                 {withCredentials: true}
             )
             console.log("data saved")
-            setEditIndexExperience(null)
+            setEditIndexAchievement(null)
         }
         catch(err){
             console.log(err);
@@ -125,29 +124,29 @@ export default function AdminQualification(props) {
         resetNewEducationSub();
         resetNewEducationCalender();
     };
-    const onSubmitDeleteExperience=async(id)=>{
+    const onSubmitDeleteAchievement=async(id)=>{
         try{
-            const response=await axios.delete(`${baseURL}/api/portfolio/qualification/experience/${id}`,
+            const response=await axios.delete(`${baseURL}/api/portfolio/qualification/achievement/${id}`,
                 {withCredentials: true}
             )
-            console.log("Experience Deleted")
+            console.log("Achievements Deleted")
         }
         catch(err){
             console.log(err);
         }
     }
-    const resetAddedExperience = () => {
-        resetNewExperience();
-        resetNewExperienceSub();
-        resetNewExperienceCalender();
+    const resetAddedAchievements = () => {
+        resetNewAchievement();
+        resetNewAchievementSub();
+        resetNewAchievementCalender();
     };
     const toggleEditModeEducation = (index) => {
-        if(editIndexEducation!==null || editIndexExperience!==null) return;
+        if(editIndexEducation!==null || editIndexAchievement!==null) return;
         setEditIndexEducation(editIndexEducation === index ? null : index);
     };
-    const toggleEditModeExperience = (index) => {
-        if(editIndexExperience!==null || editIndexEducation!==null) return;
-        setEditIndexExperience(editIndexExperience === index ? null : index);
+    const toggleEditModeAchievement = (index) => {
+        if(editIndexAchievement!==null || editIndexEducation!==null) return;
+        setEditIndexAchievement(editIndexAchievement === index ? null : index);
     };
     return (
         auth.isAuthenticated ? 
@@ -296,15 +295,15 @@ export default function AdminQualification(props) {
                             </div>
                         </form>
                         <hr />
-                        <form onSubmit={onSubmitNewExperience}>
+                        <form onSubmit={onSubmitNewAchievements}>
                             <div style={{ margin: '1rem 0', padding: '.5rem 1rem' }}>
                                 <div className='admin-qualification-new grid'>
                                     <TextField
                                     size={isMobile ? "small": ''} 
                                     InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                 InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
-                                    value={newExperience} 
-                                    onChange={setNewExperience}
+                                    value={newAchievement} 
+                                    onChange={setNewAchievement}
                                     variant="outlined"
                                     margin='normal'
                                     label="Title"
@@ -314,8 +313,8 @@ export default function AdminQualification(props) {
                                     size={isMobile ? "small": ''} 
                                     InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                 InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
-                                    value={newExperienceSub} 
-                                    onChange={setNewExperienceSub}
+                                    value={newAchievementSub} 
+                                    onChange={setNewAchievementSub}
                                     variant="outlined"
                                     margin='normal'
                                     label="Sub Title"
@@ -325,8 +324,8 @@ export default function AdminQualification(props) {
                                     size={isMobile ? "small": ''} 
                                     InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                 InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
-                                    value={newExperienceCalender} 
-                                    onChange={setNewExperienceCalender}
+                                    value={newAchievementCalender} 
+                                    onChange={setNewAchievementCalender}
                                     variant="outlined"
                                     margin='normal'
                                     label="Calender"
@@ -348,7 +347,7 @@ export default function AdminQualification(props) {
                                                 backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
                                             }}
                                             className="admin-qualification-reset-btn button button--flex" 
-                                            onClick={resetAddedExperience}>Reset</button>
+                                            onClick={resetAddedAchievements}>Reset</button>
                                         </div>
                                 </div>
                             </div>
@@ -358,17 +357,17 @@ export default function AdminQualification(props) {
                             e.preventDefault()
                         }}>
                             <div style={{ margin: '1rem 0', padding: '.5rem 1rem' }}>
-                                {experience.map((experience,index)=>{
+                                {achievement.map((achievement,index)=>{
                                     return (
                                         <div key={index} className='admin-qualification-list grid'>
                                             <TextField
                                             size={isMobile ? "small": ''} 
                                             InputProps={{ 
-                                                readOnly: editIndexExperience !== index,
+                                                readOnly: editIndexAchievement !== index,
                                                 style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                             InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
-                                            value={experience.title} 
-                                            onChange={setExperience(index,'title')}
+                                            value={achievement.title} 
+                                            onChange={setAchievement(index,'title')}
                                             variant="outlined"
                                             margin='normal'
                                             label="Title"
@@ -377,11 +376,11 @@ export default function AdminQualification(props) {
                                             <TextField
                                             size={isMobile ? "small": ''} 
                                             InputProps={{ 
-                                                readOnly: editIndexExperience !== index,
+                                                readOnly: editIndexAchievement!== index,
                                                 style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                             InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
-                                            value={experience.subtitle} 
-                                            onChange={setExperience(index,'subtitle')}
+                                            value={achievement.subtitle} 
+                                            onChange={setAchievement(index,'subtitle')}
                                             variant="outlined"
                                             margin='normal'
                                             label="SubTitle"
@@ -390,25 +389,25 @@ export default function AdminQualification(props) {
                                             <TextField
                                             size={isMobile ? "small": ''} 
                                             InputProps={{ 
-                                                readOnly: editIndexExperience !== index,
+                                                readOnly: editIndexAchievement !== index,
                                                 style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                             InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
-                                            value={experience.calender} 
-                                            onChange={setExperience(index,'calender')}
+                                            value={achievement.calender} 
+                                            onChange={setAchievement(index,'calender')}
                                             variant="outlined"
                                             margin='normal'
                                             label="Calender"
                                             fullWidth
                                             />
                                             <div className='admin-qualification-single-item'>
-                                                {editIndexExperience!==index ? <button 
+                                                {editIndexAchievement!==index ? <button 
                                                     style={
                                                         {   
                                                             color:darktheme ? 'var(--title-color)':'var(--container-color)',
                                                             backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
                                                         }}
                                                     className="admin-qualification-edit-btn button button--flex" 
-                                                    onClick={() => toggleEditModeExperience(index)}>Edit</button> :
+                                                    onClick={() => toggleEditModeAchievement(index)}>Edit</button> :
                                                     <button 
                                                     style={
                                                         {   
@@ -416,7 +415,7 @@ export default function AdminQualification(props) {
                                                             backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
                                                         }}
                                                     className="admin-qualification-edit-btn button button--flex" 
-                                                    onClick={onSubmitExperience}
+                                                    onClick={onSubmitAchievement}
                                                     >Done</button>}
                                                 <button 
                                                 style={
@@ -425,7 +424,7 @@ export default function AdminQualification(props) {
                                                         backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
                                                     }}
                                                     className="admin-qualification-delete-btn button button--flex" 
-                                                    onClick={()=>onSubmitDeleteExperience(experience._id)}
+                                                    onClick={()=>onSubmitDeleteAchievement(achievement._id)}
                                                     >Delete</button>
                                                 </div>
                                         </div>

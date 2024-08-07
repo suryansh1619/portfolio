@@ -4,7 +4,7 @@ import useToggle from '../hooks/usetoggle';
 import { ThemeContext } from '../contexts/ThemeContext';
 
 export default function Qualification(props) {
-    const {qualificationEducation,qualificationExperience}=props;
+    const {qualificationEducation,qualificationAchievement}=props;
     const {darktheme}=useContext(ThemeContext)
     const[toggle,showMenu]=useToggle(true);
     return (
@@ -31,7 +31,7 @@ export default function Qualification(props) {
                     onClick={showMenu}
                     style={{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}>
                         <i className="uil uil-briefcase-alt qualification-icon"></i>
-                        Experience 
+                        Achievements 
                     </div>
                 </div>
                 <div className="qualification-sections">
@@ -87,21 +87,21 @@ export default function Qualification(props) {
                         })}
                     </div>
                     <div className={!toggle ? "qualification-content qualification-content-active": "qualification-content "}>
-                    {qualificationExperience.map((experience,index)=>{
+                    {qualificationAchievement.map((achievement,index)=>{
                             if(index%2!==0){
                                 return(
-                                    <div key={experience._id} className="qualification-data">
+                                    <div key={achievement._id} className="qualification-data">
                                         <div>
                                             <h3 
                                                 className="qualification-title"
-                                                style={{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}>{experience.title}</h3>
+                                                style={{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}>{achievement.title}</h3>
                                             <h4     
                                                 className="qualification-subtitle"
-                                                style={{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}>{experience.subtitle}</h4>
+                                                style={{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}>{achievement.subtitle}</h4>
                                             <div 
                                                 className="qualification-calender"
                                                 style={{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}>
-                                                <i className="uil uil-calendar-alt"></i> {experience.calender}
+                                                <i className="uil uil-calendar-alt"></i> {achievement.calender}
                                             </div>
                                         </div>
                                         <div>
@@ -113,7 +113,7 @@ export default function Qualification(props) {
                             }
                             else{
                                 return(
-                                    <div key={experience._id} className="qualification-data">
+                                    <div key={achievement._id} className="qualification-data">
                                         <div></div>
                                         <div>
                                             <span className="qualification-rounder"></span>
@@ -122,14 +122,14 @@ export default function Qualification(props) {
                                         <div>
                                             <h3 
                                                 className="qualification-title"
-                                                style={{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}>{experience.title}</h3>
+                                                style={{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}>{achievement.title}</h3>
                                             <h4 
                                                 className="qualification-subtitle"
-                                                style={{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}>{experience.subtitle}</h4>
+                                                style={{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}>{achievement.subtitle}</h4>
                                             <div 
                                                 className="qualification-calender"
                                                 style={{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}>
-                                                <i className="uil uil-calendar-alt">{experience.calender}</i> 
+                                                <i className="uil uil-calendar-alt">{achievement.calender}</i> 
                                             </div>
                                         </div>
                                     </div>

@@ -130,7 +130,7 @@ export default function AdminHeader() {
                                 style={{
                                     color: darktheme ? "var(--container-color)" : "var(--title-color)"
                                 }}>
-                                <i className='uil uil-brush-alt admin-nav-icon'></i>
+                                <i className='uil uil-signout admin-nav-icon'></i>
                                 Log Out
                             </div>
                         </li>

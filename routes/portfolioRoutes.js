@@ -1,5 +1,5 @@
 const router=require('express').Router();
-const {HomeData ,HomeSocial ,About ,AboutInfo ,Footer ,ProjectsProject  ,QualificationEducation ,QualificationExperience ,Skills ,Theme}=require('../models/portfolioModel');
+const {HomeData ,HomeSocial ,About ,AboutInfo ,Footer ,ProjectsProject  ,QualificationEducation ,QualificationAchievement ,Skills ,Theme}=require('../models/portfolioModel');
 const {jwtauth}=require('../jwt')
 router.get('/data',async(req,res)=>{
     try{
@@ -10,7 +10,7 @@ router.get('/data',async(req,res)=>{
         const footer=await Footer.find();
         const projectsProject=await ProjectsProject.find();
         const qualificationEducation=await QualificationEducation.find();
-        const qualificationExperience=await QualificationExperience.find();
+        const qualificationAchievement=await QualificationAchievement.find();
         const skills=await Skills.find();
         const theme=await Theme.find();
         console.log('data fetched');
@@ -22,7 +22,7 @@ router.get('/data',async(req,res)=>{
             footer:footer,
             projectsProject:projectsProject,
             qualificationEducation:qualificationEducation,
-            qualificationExperience:qualificationExperience,
+            qualificationAchievement:qualificationAchievement,
             skills:skills,
             theme:theme
         })
@@ -182,14 +182,14 @@ router.delete('/qualification/education/:id',jwtauth,async(req,res)=>{
     }
 })
 
-router.post('/qualification/experience',jwtauth,async(req,res)=>{
+router.post('/qualification/achievement',jwtauth,async(req,res)=>{
     try{
-        const data=await QualificationExperience.findByIdAndUpdate(
+        const data=await QualificationAchievement.findByIdAndUpdate(
             { _id:req.body._id},
             req.body,
             {new:true}
         )
-        console.log('Qualification Experience updated');
+        console.log('Qualification Achievements updated');
         res.status(200).json(data);
     }
     catch(err){
@@ -197,13 +197,13 @@ router.post('/qualification/experience',jwtauth,async(req,res)=>{
     }
 })
 
-router.post('/qualification/experience/add', jwtauth,async (req, res) => {
+router.post('/qualification/achievement/add', jwtauth,async (req, res) => {
     try {
         const { title, subtitle,calender } = req.body;
-        const newExperience = new QualificationExperience({title,subtitle,calender});
-        await newExperience.save();
+        const newAchievements = new QualificationAchievement({title,subtitle,calender});
+        await newAchievements.save();
         console.log('New qualification added');
-        res.status(201).json(newExperience);
+        res.status(201).json(newAchievements);
     } 
     catch (err) {
         console.error(err);
@@ -211,15 +211,15 @@ router.post('/qualification/experience/add', jwtauth,async (req, res) => {
     }
 });
 
-router.delete('/qualification/experience/:id',jwtauth,async(req,res)=>{
+router.delete('/qualification/achievement/:id',jwtauth,async(req,res)=>{
     try{
         const {id}=req.params;
-        const deleteExperience=await QualificationExperience.findByIdAndDelete(id);
-        if (!deleteExperience) {
-            return res.status(404).json({ message: 'Experience not found' });
+        const deleteAchievements=await QualificationAchievement.findByIdAndDelete(id);
+        if (!deleteAchievements) {
+            return res.status(404).json({ message: 'Achievements not found' });
         }
-        console.log("Experience Deleted");
-        res.status(200).json(deleteExperience);
+        console.log("Achievements Deleted");
+        res.status(200).json(deleteAchievements);
     }
     catch(err){
         res.status(500).json(err);

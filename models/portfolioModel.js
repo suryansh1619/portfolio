@@ -3,178 +3,178 @@ const mongoose=require('mongoose');
 const homeDataSchema=new mongoose.Schema({
     firstName:{
         type:String,
-        require:true
+        required:true
     },
     lastName:{
         type:String,
-        require:true
+        required:true
     },
     description:{
         type:String,
-        require:true
+        required:true
     },
     buttonText:{
         type:String,
-        require:true
+        required:true
     }
 })  
 const homeSocialSchema=new mongoose.Schema({
     name:{
         type:String,
-        require:true,
+        required:true,
         unique:true
     },
     link:{
         type:String,
-        require:true,
+        required:true,
         unique:true
     }
 })  
 const aboutSchema=new mongoose.Schema({
     description:{
         type:String,
-        require:true
+        required:true
     },
     buttonText:{
         type:String,
-        require:true
+        required:true
     }
 })  
 const aboutInfoSchema=new mongoose.Schema({
     title1:{
         type:String,
-        require:true
+        required:true
     },
     subtitle1:{
         type:String,
-        require:true
+        required:true
     },
     title2:{
         type:String,
-        require:true
+        required:true
     },
     subtitle2:{
         type:String,
-        require:true
+        required:true
     }
 })  
 
 const footerSchema=new mongoose.Schema({
     name:{
         type:String,
-        require:true,
+        required:true,
         unique:true
     },
     link:{
         type:String,
-        require:true,
+        required:true,
         unique:true
     }
 })
 const projectsProjectSchema=new mongoose.Schema({
     imgUrl:{
         type:String,
-        require:true
+        required:true
     },
     title:{
         type:String,
-        require:true,
+        required:true,
         unique:true
     },
     category:{
         type:String,
-        require:true
+        required:true
     },
     title1:{
         type:String,
-        require:true
+        required:true
     },
     description1:{
         type:String,
-        require:true
+        required:true
     },
     title2:{
         type:String,
-        require:true
+        required:true
     },
     description2:{
         type:String,
-        require:true
+        required:true
     },
     title3:{
         type:String,
-        require:true
+        required:true
     },
     description3:{
         type:String,
-        require:true
+        required:true
     },
     title4:{
         type:String,
-        require:true
+        required:true
     },
     description4:{
         type:String,
-        require:true
+        required:true
     },
     link:{
         type:String,
-        require:true,
+        required:true,
     }
 })
 
 const qualificationEducationSchema=new mongoose.Schema({
     title:{
         type:String,
-        require:true,
+        required:true,
         unique:true
     },
     subtitle:{
         type:String,
-        require:true
+        required:true
     },
     calender:{
         type:String,
-        require:true,
+        required:true,
     }
 })
-const qualificationExperienceSchema=new mongoose.Schema({
+const qualificationAchievementSchema=new mongoose.Schema({
     title:{
         type:String,
-        require:true,
+        required:true,
         unique:true
     },
     subtitle:{
         type:String,
-        require:true
+        required:true
     },
     calender:{
         type:String,
-        require:true,
+        required:true,
     }
 })
 
 const skillsSchema=new mongoose.Schema({
     title:{
         type:String,
-        require:true,
+        required:true,
         unique:true
     },
     level:{
         type:String,
-        require:true
+        required:true
     }
 })
 
 const themeSchema=new mongoose.Schema({
     name:{
         type:String,
-        require:true,
+        required:true,
         unique:true
     },
     color:{
         type:String,
-        require:true
+        required:true
     },
     selected:{
         type:Boolean,
@@ -189,7 +189,7 @@ const AboutInfo=mongoose.model('AboutInfo',aboutInfoSchema);
 const Footer=mongoose.model('Footer',footerSchema);
 const ProjectsProject=mongoose.model('ProjectsProject',projectsProjectSchema);
 const QualificationEducation=mongoose.model('QualificationEducation',qualificationEducationSchema);
-const QualificationExperience=mongoose.model('QualificationExperience',qualificationExperienceSchema);
+const QualificationAchievement=mongoose.model('QualificationAchievement',qualificationAchievementSchema);
 const Skills=mongoose.model('Skills',skillsSchema);
 const Theme=mongoose.model('Theme',themeSchema);
 
@@ -201,7 +201,7 @@ module.exports = {
     Footer,
     ProjectsProject,
     QualificationEducation,
-    QualificationExperience,
+    QualificationAchievement,
     Skills,
     Theme
 };

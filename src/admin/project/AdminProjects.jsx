@@ -326,13 +326,14 @@ export default function AdminProjects(props) {
                             {projects.map((project,index)=>{
                                 return(
                                     <div className='admin-project-list-item-modal'
+                                    key={project._id}
                                         style={{ margin: '1rem 0', padding: '.5rem 1rem',
                                             backgroundColor: darktheme ? 'rgba(255,255,255,0.1)' :"rgba(0,0,0,0.1)",
                                             color:darktheme ? 'var(--container-color)':'var(--title-color)'
                                         }}
                                         onClick={()=>changeHover(index)}>
                                             <img src={project.imgUrl} alt="" className="project-img" />
-                                            <div class='admin-project-list-item-hover-modal'>
+                                            <div className='admin-project-list-item-hover-modal'>
                                             </div>
                                             <h1 className="admin-project-tmp-title">{project.title}</h1>
                                             <div>
@@ -340,7 +341,7 @@ export default function AdminProjects(props) {
                                                 style={{
                                                     color:darktheme ? 'var(--container-color)':'var(--title-color)'
                                                 }}
-                                                onCli>{project.title}</h3>
+                                                >{project.title}</h3>
                                             </div>
                                             {isHovering===index &&
                                                 <form onSubmit={e => {

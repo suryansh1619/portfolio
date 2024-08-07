@@ -1,3 +1,5 @@
+const { QualificationAchievement } = require("./models/portfolioModel")
+
 HomeData=[
     {
         firstName:"Suryansh",
@@ -149,7 +151,7 @@ QualificationEducation=[
         calender:"2022-present"
     }
 ]
-QualificationExperience=[
+QualificationAchievement=[
     {
         title:"BTech",
         subtitle:"IIIT nagpur",

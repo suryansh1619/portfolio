@@ -29,8 +29,8 @@ export default function About(props) {
                         {about.description}
                     </p>
                     <a
-                        href="/suryansh.jpg"
-                        download="suryansh.jpg"
+                        href="Suryansh_Sahu.pdf"
+                        download="Suryansh_sahu.pdf"
                         className="button button--flex"
                         style={{backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)',
                             color:darktheme ? 'var(--title-color)':'var(--container-color)'

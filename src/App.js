@@ -65,7 +65,7 @@ function App() {
                 aboutInfo={data.aboutInfo[0]}
                 skills={data.skills}
                 qualificationEducation={data.qualificationEducation}
-                qualificationExperience={data.qualificationExperience}
+                qualificationAchievement={data.qualificationAchievement}
                 footers={data.footer}
               />} />
               <Route path="/projects" element={<Projects projectsProject={data.projectsProject} />} />
@@ -83,7 +83,7 @@ function App() {
               />}  />
               <Route path='/admin/qualification' element={<AdminQualification
                 qualificationEducation={data.qualificationEducation}
-                qualificationExperience={data.qualificationExperience}
+                qualificationAchievement={data.qualificationAchievement}
               />}  />
               <Route path='/admin/projects' element={<AdminProjects
                 projectsProject={data.projectsProject}
