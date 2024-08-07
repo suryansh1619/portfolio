@@ -14,7 +14,7 @@ app.use(bodyparser.json());
 app.use(cookieParser());
 app.use(cors({
     origin: "https://portfolio-nine-sable-21.vercel.app",
-    withcredentials: true
+    credentials: true
 }));
 app.use(express.json());
 
