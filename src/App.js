@@ -32,7 +32,7 @@ function App() {
     setData(data);
   };
 
-  const baseURL = process.env.REACT_APP_BACKEND_PORT;
+  const baseURL =" https://portfolio-suryansh.onrender.com";
 
   const getData = async () => {
     try {
