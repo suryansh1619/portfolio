@@ -30,9 +30,10 @@ export default function AdminLogin() {
             password
         }
         try{
-            const response=await axios.post(`${baseURL}/api/user/login`,{
-                ...values
-            })
+            const response=await axios.post(`${baseURL}/api/user/login`,
+                values,
+                {withCredentials: true}
+            )
             await checkAuth()
             console.log("data fetched")
             navigate('/admin/home'); 
