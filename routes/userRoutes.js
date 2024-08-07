@@ -56,8 +56,13 @@ router.post('/logout', async (req, res) => {
     }
 })
 
-router.get('/check/auth', jwtauth, (req, res) => {
-    res.status(200).json({ user: req.user });
+router.get('/check/auth',jwtauth, async (req, res) => {
+    try {
+        res.status(200).json({ user: req.user });
+    } catch (error) {
+        console.error("Authentication error:", error);
+        res.status(401).json({ error: 'Unauthorized' });
+    }
 });
 
 module.exports = router;
