@@ -56,7 +56,7 @@ router.post('/logout', async (req, res) => {
     }
 })
 
-router.get('/check/auth',jwtauth, async (req, res) => {
+router.get('/check/auth', async (req, res) => {
     try {
         res.status(200).json({ user: req.user });
     } catch (error) {
