@@ -34,14 +34,14 @@ router.post('/login', async (req, res) => {
             email: user.email
         }
         const token = generatetoken(payload);
-        res.cookie('token', token, { 
+        res.cookie('token', token, {
             httpOnly: true,
-            secure: true, 
-            sameSite: 'Lax', 
-            expires:new Date(
-            Date.now()+60*60*1000
-        )  })
-        res.status(200).json({ message: 'Login successful',token });
+            secure: true,
+            expires: new Date(
+                Date.now() + 60 * 60 * 1000
+            )
+        })
+        res.status(200).json({ message: 'Login successful', token });
     }
     catch (err) {
         console.log(err)
@@ -60,7 +60,7 @@ router.post('/logout', async (req, res) => {
     }
 })
 
-router.get('/check/auth',jwtauth, async (req, res) => {
+router.get('/check/auth', jwtauth, async (req, res) => {
     try {
         res.status(200).json({ user: req.user });
     } catch (error) {
