@@ -19,14 +19,13 @@ export default function AdminProjects(props) {
     const [newProjectImgurl,setNewProjectImgurl,resetNewProjectImgurl]=useInput('');
     const [newProjectLink,setNewProjectLink,resetNewProjectLink]=useInput('');
     const [newProjectCategory,setNewProjectCategory,resetNewProjectCategory]=useInput('');
-    const [newProjectTitle1,setNewProjectTitle1,resetNewProjectTitle1]=useInput('');
-    const [newProjectDescription1,setNewProjectDescription1,resetNewProjectDescription1]=useInput('');
-    const [newProjectTitle2,setNewProjectTitle2,resetNewProjectTitle2]=useInput('');
-    const [newProjectDescription2,setNewProjectDescription2,resetNewProjectDescription2]=useInput('');
-    const [newProjectTitle3,setNewProjectTitle3,resetNewProjectTitle3]=useInput('');
-    const [newProjectDescription3,setNewProjectDescription3,resetNewProjectDescription3]=useInput('');
-    const [newProjectTitle4,setNewProjectTitle4,resetNewProjectTitle4]=useInput('');
-    const [newProjectDescription4,setNewProjectDescription4,resetNewProjectDescription4]=useInput('');
+    const [newProjectDescription,setNewProjectDescription,resetNewProjectDescription]=useInput('');
+    const [newProjectSubtitle1,setNewProjectSubtitle1,resetNewProjectSubtitle1]=useInput('');
+    const [newProjectSubtitle2,setNewProjectSubtitle2,resetNewProjectSubtitle2]=useInput('');
+    const [newProjectSubtitle3,setNewProjectSubtitle3,resetNewProjectSubtitle3]=useInput('');
+    const [newProjectSubtitle4,setNewProjectSubtitle4,resetNewProjectSubtitle4]=useInput('');
+    const [newProjectSubtitle5,setNewProjectSubtitle5,resetNewProjectSubtitle5]=useInput('');
+    const [newProjectSubtitle6,setNewProjectSubtitle6,resetNewProjectSubtitle6]=useInput('');
     const [isHovering, toggleHover] = useState(null);
     const [isHoveringEdit, toggleHoverEdit] = useToggle(false);
     const baseURL =process.env.REACT_APP_BACKEND_PORT || '';
@@ -65,22 +64,22 @@ export default function AdminProjects(props) {
     const onSubmitNewProject=async(e)=>{
         e.preventDefault();
         if(!newProject || !newProjectImgurl || !newProjectCategory || !newProjectLink
-            || !newProjectTitle1 || !newProjectDescription1 || !newProjectTitle2 ||
-            !newProjectDescription2 || !newProjectTitle3 || !newProjectDescription3 ||
-            !newProjectTitle4 || !newProjectDescription4) return;
+            || !newProjectSubtitle1 || !newProjectDescription || !newProjectSubtitle2 ||
+            !newProjectSubtitle3 || !newProjectSubtitle4 || newProjectSubtitle5 ||
+            !newProjectSubtitle5
+        ) return;
         const values={
             title:newProject,
             Imgurl:newProjectImgurl,
             link:newProjectLink,
             category:newProjectCategory,
-            title1:newProjectTitle1,
-            description1:newProjectDescription1,
-            title2:newProjectTitle2,
-            description2:newProjectDescription2,
-            title3:newProjectTitle3,
-            description3:newProjectDescription3,
-            title4:newProjectTitle4,
-            description4:newProjectDescription4
+            description:newProjectDescription,
+            subtitle1:newProjectSubtitle1,
+            subtitle2:newProjectSubtitle2,
+            subtitle3:newProjectSubtitle3,
+            subtitle4:newProjectSubtitle4,
+            subtitle5:newProjectSubtitle5,
+            subtitle6:newProjectSubtitle6,
         }
         try{
             const response=await axios.post(`${baseURL}/api/portfolio/projects/add`,
@@ -112,14 +111,13 @@ export default function AdminProjects(props) {
         resetNewProjectImgurl();
         resetNewProjectLink();
         resetNewProjectCategory();
-        resetNewProjectTitle1();
-        resetNewProjectDescription1();
-        resetNewProjectTitle2();
-        resetNewProjectDescription2();
-        resetNewProjectTitle3();
-        resetNewProjectDescription3();
-        resetNewProjectTitle4();
-        resetNewProjectDescription4();
+        resetNewProjectDescription();
+        resetNewProjectSubtitle1();
+        resetNewProjectSubtitle2();
+        resetNewProjectSubtitle3();
+        resetNewProjectSubtitle4();
+        resetNewProjectSubtitle5();
+        resetNewProjectSubtitle6();
     }
     return (
         auth.isAuthenticated ?
@@ -176,6 +174,18 @@ export default function AdminProjects(props) {
                                     label="Project Link"
                                     fullWidth
                                     />
+                                    <TextField
+                                        size={isMobile ? "small": ''} 
+                                        style={{width:isMobile370 ? "100px" : ''}}
+                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
+                                        value={newProjectDescription} 
+                                        onChange={setNewProjectDescription}
+                                        variant="outlined"
+                                        margin='normal'
+                                        label="Description 1"
+                                        fullWidth
+                                        />
                                     <div className='admin-project-new grid'>
                                         <TextField
                                         size={isMobile ? "small": ''} 
@@ -206,8 +216,8 @@ export default function AdminProjects(props) {
                                         style={{width:isMobile370 ? "100px" : ''}}
                                         InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                         InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                        value={newProjectTitle1} 
-                                        onChange={setNewProjectTitle1}
+                                        value={newProjectSubtitle1} 
+                                        onChange={setNewProjectSubtitle1}
                                         variant="outlined"
                                         margin='normal'
                                         label="Title 1"
@@ -218,20 +228,8 @@ export default function AdminProjects(props) {
                                         style={{width:isMobile370 ? "100px" : ''}}
                                         InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                         InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                        value={newProjectDescription1} 
-                                        onChange={setNewProjectDescription1}
-                                        variant="outlined"
-                                        margin='normal'
-                                        label="Description 1"
-                                        fullWidth
-                                        />
-                                        <TextField
-                                        size={isMobile ? "small": ''} 
-                                        style={{width:isMobile370 ? "100px" : ''}}
-                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                        value={newProjectTitle2} 
-                                        onChange={setNewProjectTitle2}
+                                        value={newProjectSubtitle2} 
+                                        onChange={setNewProjectSubtitle2}
                                         variant="outlined"
                                         margin='normal'
                                         label="Title 2"
@@ -242,20 +240,8 @@ export default function AdminProjects(props) {
                                         style={{width:isMobile370 ? "100px" : ''}}
                                         InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                         InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                        value={newProjectDescription2} 
-                                        onChange={setNewProjectDescription2}
-                                        variant="outlined"
-                                        margin='normal'
-                                        label="Description 2"
-                                        fullWidth
-                                        />
-                                        <TextField
-                                        size={isMobile ? "small": ''} 
-                                        style={{width:isMobile370 ? "100px" : ''}}
-                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                        value={newProjectTitle3} 
-                                        onChange={setNewProjectTitle3}
+                                        value={newProjectSubtitle3} 
+                                        onChange={setNewProjectSubtitle3}
                                         variant="outlined"
                                         margin='normal'
                                         label="Title 3"
@@ -266,20 +252,8 @@ export default function AdminProjects(props) {
                                         style={{width:isMobile370 ? "100px" : ''}}
                                         InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                         InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                        value={newProjectDescription3} 
-                                        onChange={setNewProjectDescription3}
-                                        variant="outlined"
-                                        margin='normal'
-                                        label="Description 3"
-                                        fullWidth
-                                        />
-                                        <TextField
-                                        size={isMobile ? "small": ''} 
-                                        style={{width:isMobile370 ? "100px" : ''}}
-                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                        value={newProjectTitle4} 
-                                        onChange={setNewProjectTitle4}
+                                        value={newProjectSubtitle4} 
+                                        onChange={setNewProjectSubtitle4}
                                         variant="outlined"
                                         margin='normal'
                                         label="Title 4"
@@ -290,11 +264,23 @@ export default function AdminProjects(props) {
                                         style={{width:isMobile370 ? "100px" : ''}}
                                         InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                         InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                        value={newProjectDescription4} 
-                                        onChange={setNewProjectDescription4}
+                                        value={newProjectSubtitle5} 
+                                        onChange={setNewProjectSubtitle5}
                                         variant="outlined"
                                         margin='normal'
-                                        label="Description 4"
+                                        label="Title 4"
+                                        fullWidth
+                                        />
+                                        <TextField
+                                        size={isMobile ? "small": ''} 
+                                        style={{width:isMobile370 ? "100px" : ''}}
+                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
+                                        value={newProjectSubtitle6} 
+                                        onChange={setNewProjectSubtitle6}
+                                        variant="outlined"
+                                        margin='normal'
+                                        label="Title 4"
                                         fullWidth
                                         />
                                         <button 
@@ -384,6 +370,19 @@ export default function AdminProjects(props) {
                                                             label="Project Link"
                                                             fullWidth
                                                             />
+                                                            <TextField
+                                                                size={isMobile ? "small": ''} 
+                                                                style={{width:isMobile370 ? "100px" : ''}}
+                                                                InputProps={{ 
+                                                                    style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                                                InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
+                                                                value={project.description1} 
+                                                                onChange={setProjects(index,'description')}
+                                                                variant="outlined"
+                                                                margin='normal'
+                                                                label="Description "
+                                                                fullWidth
+                                                                />
                                                             <div key={index} className='admin-project-list grid'>
                                                                 <TextField
                                                                 size={isMobile ? "small": ''} 
@@ -418,23 +417,10 @@ export default function AdminProjects(props) {
                                                                     style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                                                 InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
                                                                 value={project.title1} 
-                                                                onChange={setProjects(index,'title1')}
+                                                                onChange={setProjects(index,'subtitle1')}
                                                                 variant="outlined"
                                                                 margin='normal'
-                                                                label="Title 1"
-                                                                fullWidth
-                                                                />
-                                                                <TextField
-                                                                size={isMobile ? "small": ''} 
-                                                                style={{width:isMobile370 ? "100px" : ''}}
-                                                                InputProps={{ 
-                                                                    style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                                                                InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                                                value={project.description1} 
-                                                                onChange={setProjects(index,'description1')}
-                                                                variant="outlined"
-                                                                margin='normal'
-                                                                label="Description 1"
+                                                                label="Subtitle 1"
                                                                 fullWidth
                                                                 />
                                                                 <TextField
@@ -444,23 +430,10 @@ export default function AdminProjects(props) {
                                                                     style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                                                 InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
                                                                 value={project.title2} 
-                                                                onChange={setProjects(index,'title2')}
+                                                                onChange={setProjects(index,'subtitle2')}
                                                                 variant="outlined"
                                                                 margin='normal'
-                                                                label="Title 2"
-                                                                fullWidth
-                                                                />
-                                                                <TextField
-                                                                size={isMobile ? "small": ''} 
-                                                                style={{width:isMobile370 ? "100px" : ''}}
-                                                                InputProps={{ 
-                                                                    style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                                                                InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                                                value={project.description2} 
-                                                                onChange={setProjects(index,'description2')}
-                                                                variant="outlined"
-                                                                margin='normal'
-                                                                label="Description 2"
+                                                                label="Subtitle 2"
                                                                 fullWidth
                                                                 />
                                                                 <TextField
@@ -470,23 +443,10 @@ export default function AdminProjects(props) {
                                                                     style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                                                 InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
                                                                 value={project.title3} 
-                                                                onChange={setProjects(index,'title3')}
+                                                                onChange={setProjects(index,'subtitle3')}
                                                                 variant="outlined"
                                                                 margin='normal'
-                                                                label="Title 3"
-                                                                fullWidth
-                                                                />
-                                                                <TextField
-                                                                size={isMobile ? "small": ''} 
-                                                                style={{width:isMobile370 ? "100px" : ''}}
-                                                                InputProps={{ 
-                                                                    style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                                                                InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                                                value={project.description3} 
-                                                                onChange={setProjects(index,'description3')}
-                                                                variant="outlined"
-                                                                margin='normal'
-                                                                label="Description 3"
+                                                                label="Subtitle 3"
                                                                 fullWidth
                                                                 />
                                                                 <TextField
@@ -496,10 +456,10 @@ export default function AdminProjects(props) {
                                                                     style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                                                 InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
                                                                 value={project.title4} 
-                                                                onChange={setProjects(index,'title4')}
+                                                                onChange={setProjects(index,'subtitle4')}
                                                                 variant="outlined"
                                                                 margin='normal'
-                                                                label="Title 4"
+                                                                label="Subtitle 4"
                                                                 fullWidth
                                                                 />
                                                                 <TextField
@@ -508,11 +468,24 @@ export default function AdminProjects(props) {
                                                                 InputProps={{ 
                                                                     style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
                                                                 InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                                                value={project.description4} 
-                                                                onChange={setProjects(index,'description4')}
+                                                                value={project.title4} 
+                                                                onChange={setProjects(index,'subtitle4')}
                                                                 variant="outlined"
                                                                 margin='normal'
-                                                                label="Description 4"
+                                                                label="Subtitle 4"
+                                                                fullWidth
+                                                                />
+                                                                <TextField
+                                                                size={isMobile ? "small": ''} 
+                                                                style={{width:isMobile370 ? "100px" : ''}}
+                                                                InputProps={{ 
+                                                                    style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                                                InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
+                                                                value={project.title4} 
+                                                                onChange={setProjects(index,'subtitle4')}
+                                                                variant="outlined"
+                                                                margin='normal'
+                                                                label="Subtitle 4"
                                                                 fullWidth
                                                                 />
                                                                 <button 

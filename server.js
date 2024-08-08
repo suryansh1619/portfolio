@@ -16,7 +16,7 @@ app.use(cors({
     origin: "https://portfolio-nine-sable-21.vercel.app",
     credentials: true
 }));
-
+app.set("trust proxy", 1);
 app.use(express.json());
 
 const PORT = process.env.PORT || 5000;

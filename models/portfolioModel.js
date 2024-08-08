@@ -76,6 +76,14 @@ const projectsProjectSchema=new mongoose.Schema({
         type:String,
         required:true
     },
+    link:{
+        type:String,
+        required:true,
+    },
+    description:{
+        type:String,
+        required:true
+    },
     title:{
         type:String,
         required:true,
@@ -85,41 +93,29 @@ const projectsProjectSchema=new mongoose.Schema({
         type:String,
         required:true
     },
-    title1:{
+    subtitle1:{
         type:String,
         required:true
     },
-    description1:{
+    subtitle2:{
         type:String,
         required:true
     },
-    title2:{
+    subtitle3:{
         type:String,
         required:true
     },
-    description2:{
+    subtitle4:{
         type:String,
         required:true
     },
-    title3:{
+    subtitle5:{
         type:String,
         required:true
     },
-    description3:{
+    subtitle6:{
         type:String,
         required:true
-    },
-    title4:{
-        type:String,
-        required:true
-    },
-    description4:{
-        type:String,
-        required:true
-    },
-    link:{
-        type:String,
-        required:true,
     }
 })
 
