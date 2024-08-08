@@ -57,7 +57,10 @@ export default function Theme(props) {
         document.documentElement.style.setProperty('--first-color', color);
     }, [color]);
     return (
-        <section className={`${openStyle ? 'show-theme' :''} ${openPanel ? 'show-panel': ''} theme section `}
+        <section className={`
+            ${openStyle ? 'show-theme' :''} 
+            ${openPanel ? 'show-panel': ''} 
+            ${!openPanel && !openStyle ? 'hide-theme': ''} theme section `}
             style={{
                 backgroundColor: darktheme ?  "var(--title-color)" : "var(--container-color)",
                 boxShadow:  darktheme ? "0 0 4px hsl(0,0%,80%)" : "0 0 4px hsl(0,0%,30%)"}}>
