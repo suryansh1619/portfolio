@@ -1,19 +1,20 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const bodyParser=require('body-parser')
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const cors = require('cors');
 const morgan = require('morgan');
+require('dotenv').config();
+
 const portfolioRoutes = require('./routes/portfolioRoutes')
 const userRoutes = require('./routes/userRoutes')
-require('dotenv').config();
+const dbConfig = require('./config/db')
 
 
 const app = express();
+app.set("trust proxy", 1);
 app.use(express.json());
 app.use(cookieParser());
-app.use(bodyParser.json());
 
 app.use(cors({
     origin: process.env.NODE_ENV === 'production' ? "https://portfolio-nine-sable-21.vercel.app" : "http://localhost:3000",
@@ -35,9 +36,7 @@ app.use(session({
         expires: new Date(Date.now() + 24 * 60 * 60 * 1000)
     }
 }));
-app.set("trust proxy", 1);
 
-const dbConfig = require('./config/db')
 app.use('/api/portfolio', portfolioRoutes);
 app.use('/api/user/', userRoutes);
 
