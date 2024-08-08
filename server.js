@@ -20,23 +20,6 @@ app.use(cors({
     origin: process.env.NODE_ENV === 'production' ? "https://portfolio-nine-sable-21.vercel.app" : "http://localhost:3000",
     credentials: true
 }));
-
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    store: MongoStore.create({
-        mongoUrl: process.env.DB_URL, 
-        collectionName: 'sessions'
-    }),
-    cookie: {
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'Lax',
-        httpOnly: true,
-        expires: new Date(Date.now() + 24 * 60 * 60 * 1000)
-    }
-}));
-
 app.use('/api/portfolio', portfolioRoutes);
 app.use('/api/user/', userRoutes);
 

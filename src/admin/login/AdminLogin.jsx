@@ -8,6 +8,7 @@ import useInput from '../../hooks/useInput';
 import axios from 'axios';
 import { AuthContext } from '../../contexts/AuthContext';
 
+
 export default function AdminLogin() {
     const {darktheme}=useContext(ThemeContext)
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 576);
@@ -34,7 +35,10 @@ export default function AdminLogin() {
                 values,
                 {withCredentials: true}
             )
-            await checkAuth()
+            const { token } = response.data;
+            localStorage.setItem('token', token);
+            // const userData = await fetchUserData();
+            checkAuth();
             console.log("data fetched")
             navigate('/admin/home'); 
         }

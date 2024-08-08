@@ -20,6 +20,7 @@ export default function AdminHeader() {
 
     const handleLogout=async()=>{
         try{
+            localStorage.removeItem('token');
             const response=await axios.post(`${baseURL}/api/user/logout`,
                 {},
                 {withCredentials:true}
