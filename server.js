@@ -1,9 +1,10 @@
 const express = require('express');
 const bodyparser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const path = require('path');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const cors = require('cors');
-const morgan=require('morgan');
+const morgan = require('morgan');
 const portfolioRoutes = require('./routes/portfolioRoutes')
 const userRoutes = require('./routes/userRoutes')
 
@@ -16,6 +17,22 @@ app.use(cors({
     origin: "https://portfolio-nine-sable-21.vercel.app",
     credentials: true
 }));
+
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
+        cookie: {
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'Lax',
+            httpOnly: true,
+            expires: new Date(Date.now() + 24 * 60 * 60 * 1000)
+        }
+    })
+);
+
 app.set("trust proxy", 1);
 app.use(express.json());
 
