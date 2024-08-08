@@ -23,12 +23,6 @@ const dbConfig = require('./config/db')
 app.use('/api/portfolio', portfolioRoutes)
 app.use('/api/user/', userRoutes)
 
-app.use(express.static(path.join(__dirname, 'build')));
-
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
-});
-
 app.listen(PORT, () => {
     console.log(`server is running on port ${PORT}`);
 })
