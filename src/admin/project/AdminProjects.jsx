@@ -49,9 +49,15 @@ export default function AdminProjects(props) {
     const onSubmitProject=async(index)=>{
         const values=projects[index];
         try{
+            const token = localStorage.getItem('token');
             const response=await axios.post(`${baseURL}/api/portfolio/projects`,
                 values,
-                {withCredentials: true}
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                }
             )
             console.log("data saved");
             toggleHover(null)
@@ -65,12 +71,12 @@ export default function AdminProjects(props) {
         e.preventDefault();
         if(!newProject || !newProjectImgurl || !newProjectCategory || !newProjectLink
             || !newProjectSubtitle1 || !newProjectDescription || !newProjectSubtitle2 ||
-            !newProjectSubtitle3 || !newProjectSubtitle4 || newProjectSubtitle5 ||
-            !newProjectSubtitle5
+            !newProjectSubtitle3 || !newProjectSubtitle4 || !newProjectSubtitle5 ||
+            !newProjectSubtitle6
         ) return;
         const values={
             title:newProject,
-            Imgurl:newProjectImgurl,
+            imgUrl:newProjectImgurl,
             link:newProjectLink,
             category:newProjectCategory,
             description:newProjectDescription,
@@ -81,10 +87,17 @@ export default function AdminProjects(props) {
             subtitle5:newProjectSubtitle5,
             subtitle6:newProjectSubtitle6,
         }
+        console.log(values)
         try{
+            const token = localStorage.getItem('token');
             const response=await axios.post(`${baseURL}/api/portfolio/projects/add`,
                 values,
-                {withCredentials: true}
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                }
             )
             console.log("New Project Added")
             resetNewProjects();
@@ -96,8 +109,14 @@ export default function AdminProjects(props) {
     }
     const onSubmitDeleteProject=async(id)=>{
         try{
+            const token = localStorage.getItem('token');
             const response=await axios.delete(`${baseURL}/api/portfolio/projects/${id}`,
-                {withCredentials: true}
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                }
             )
             console.log("Project Deleted")
             toggleHover(null)
@@ -150,7 +169,7 @@ export default function AdminProjects(props) {
                                         backgroundColor: !darktheme ? 'rgba(255,255,255,0.6)' :"rgba(0,0,0,0.6)"
                                     }}
                                         className='admin-project-new-modal'>
-                                            <i className='uil uil-times-circle admin-project-new-close' onClick={toggleHoverEdit}></i>
+                                        <i className='uil uil-times-circle admin-project-new-close' onClick={toggleHoverEdit}></i>
                                     <TextField
                                     size={isMobile ? "small": ''} 
                                     style={{width:isMobile370 ? "200px" : ''}}
@@ -220,7 +239,7 @@ export default function AdminProjects(props) {
                                         onChange={setNewProjectSubtitle1}
                                         variant="outlined"
                                         margin='normal'
-                                        label="Title 1"
+                                        label="Subtitle 1"
                                         fullWidth
                                         />
                                         <TextField
@@ -232,7 +251,7 @@ export default function AdminProjects(props) {
                                         onChange={setNewProjectSubtitle2}
                                         variant="outlined"
                                         margin='normal'
-                                        label="Title 2"
+                                        label="Subtitle 2"
                                         fullWidth
                                         />
                                         <TextField
@@ -244,7 +263,7 @@ export default function AdminProjects(props) {
                                         onChange={setNewProjectSubtitle3}
                                         variant="outlined"
                                         margin='normal'
-                                        label="Title 3"
+                                        label="Subtitle 3"
                                         fullWidth
                                         />
                                         <TextField
@@ -256,7 +275,7 @@ export default function AdminProjects(props) {
                                         onChange={setNewProjectSubtitle4}
                                         variant="outlined"
                                         margin='normal'
-                                        label="Title 4"
+                                        label="Subtitle 4"
                                         fullWidth
                                         />
                                         <TextField
@@ -268,7 +287,7 @@ export default function AdminProjects(props) {
                                         onChange={setNewProjectSubtitle5}
                                         variant="outlined"
                                         margin='normal'
-                                        label="Title 4"
+                                        label="Subtitle 5"
                                         fullWidth
                                         />
                                         <TextField
@@ -280,7 +299,7 @@ export default function AdminProjects(props) {
                                         onChange={setNewProjectSubtitle6}
                                         variant="outlined"
                                         margin='normal'
-                                        label="Title 4"
+                                        label="Subtitle 6"
                                         fullWidth
                                         />
                                         <button 
@@ -343,7 +362,7 @@ export default function AdminProjects(props) {
                                                             border: darktheme ?  "1px solid rgba(255,255,255,0.2)" : "1px solid rgba(0,0,0,0.2)",
                                                             backgroundColor: !darktheme ? 'rgba(255,255,255)' :"rgba(0,0,0,.8)"
                                                         }}
-                                                                    className='admin-project-new-modal'>
+                                                            className='admin-project-new-modal'>
                                                             <TextField
                                                             size={isMobile ? "small": ''} 
                                                             style={{width:isMobile370 ? "200px" : ''}}
@@ -472,7 +491,7 @@ export default function AdminProjects(props) {
                                                                 onChange={setProjects(index,'subtitle4')}
                                                                 variant="outlined"
                                                                 margin='normal'
-                                                                label="Subtitle 4"
+                                                                label="Subtitle 5"
                                                                 fullWidth
                                                                 />
                                                                 <TextField
@@ -485,7 +504,7 @@ export default function AdminProjects(props) {
                                                                 onChange={setProjects(index,'subtitle4')}
                                                                 variant="outlined"
                                                                 margin='normal'
-                                                                label="Subtitle 4"
+                                                                label="Subtitle 6"
                                                                 fullWidth
                                                                 />
                                                                 <button 

@@ -41,9 +41,15 @@ export default function AdminQualification(props) {
             calender:newEducationCalender
         }
         try{
+            const token = localStorage.getItem('token');
             const response=await axios.post(`${baseURL}/api/portfolio/qualification/education/add`,
                 values,
-                {withCredentials: true}
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                }
             )
             console.log("New Skill Added")
             resetAddedEducation();
@@ -62,9 +68,15 @@ export default function AdminQualification(props) {
             calender:newAchievementCalender
         }
         try{
+            const token = localStorage.getItem('token');
             const response=await axios.post(`${baseURL}/api/portfolio/qualification/achievement/add`,
                 values,
-                {withCredentials: true}
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                }
             )
             console.log("New Skill Added")
             resetAddedAchievements();
@@ -80,9 +92,15 @@ export default function AdminQualification(props) {
         const values=education[editIndexEducation];
 
         try{
+            const token = localStorage.getItem('token');
             const response=await axios.post(`${baseURL}/api/portfolio/qualification/education`,
                 values,
-                {withCredentials: true}
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                }
             )
             console.log("data saved")
             setEditIndexEducation(null)
@@ -97,9 +115,15 @@ export default function AdminQualification(props) {
         if(editIndexAchievement===null) return ;
         const values=achievement[editIndexAchievement];
         try{
+            const token = localStorage.getItem('token');
             const response=await axios.post(`${baseURL}/api/portfolio/qualification/achievement`,
                 values,
-                {withCredentials: true}
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                }
             )
             console.log("data saved")
             setEditIndexAchievement(null)
@@ -110,8 +134,14 @@ export default function AdminQualification(props) {
     }
     const onSubmitDeleteEducation=async(id)=>{
         try{
+            const token = localStorage.getItem('token');
             const response=await axios.delete(`${baseURL}/api/portfolio/qualification/education/${id}`,
-                {withCredentials: true}
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                }
             )
             console.log("Education Deleted")
         }
@@ -126,8 +156,14 @@ export default function AdminQualification(props) {
     };
     const onSubmitDeleteAchievement=async(id)=>{
         try{
+            const token = localStorage.getItem('token');
             const response=await axios.delete(`${baseURL}/api/portfolio/qualification/achievement/${id}`,
-                {withCredentials: true}
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                }
             )
             console.log("Achievements Deleted")
         }

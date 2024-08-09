@@ -6,11 +6,10 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState({ isAuthenticated: false, user: null });
     const baseURL =process.env.REACT_APP_BACKEND_PORT || '';
-    const getToken = () => localStorage.getItem('token');
     
     const checkAuth = async () => {
         try {
-            const token = getToken();
+            const token = localStorage.getItem('token');
             const response = await axios.get(`${baseURL}/api/user/check/auth`, { 
                 headers: {
                     'Authorization': `Bearer ${token}`

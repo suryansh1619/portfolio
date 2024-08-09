@@ -36,9 +36,15 @@ export default function AdminHome(props) {
             _id: homeData._id
         }
         try{
+            const token = localStorage.getItem('token');
             const response=await axios.post(`${baseURL}/api/portfolio/homedata`,
                 values,
-                {withCredentials: true}
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                }
             )
             console.log("data saved")
         }
@@ -51,9 +57,15 @@ export default function AdminHome(props) {
         if(editIndex===null) return ;
         const values=social[editIndex];
         try{
+            const token = localStorage.getItem('token');
             const response=await axios.post(`${baseURL}/api/portfolio/homesocial`,
                 values,
-                {withCredentials: true}
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                }
             )
             console.log("data saved")
             setEditIndex(null)

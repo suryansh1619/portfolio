@@ -33,9 +33,15 @@ export default function AdminTheme(props) {
             color:newThemeColor
         }
         try{
+            const token = localStorage.getItem('token');
             const response=await axios.post(`${baseURL}/api/portfolio/themes/add`,
                 values,
-                {withCredentials: true}
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                }
             )
             console.log("New Theme added")
             resetNewThemes();
@@ -46,8 +52,14 @@ export default function AdminTheme(props) {
     }
     const onSubmitDeleteTheme=async(id)=>{
         try{
+            const token = localStorage.getItem('token');
             const response=await axios.delete(`${baseURL}/api/portfolio/themes/${id}`,
-                {withCredentials: true}
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                }
             )
             console.log("Theme Deleted");
         }
@@ -60,9 +72,15 @@ export default function AdminTheme(props) {
         if(editIndex===null) return;
         const values=themes[editIndex];
         try{
+            const token = localStorage.getItem('token');
             const response=await axios.post(`${baseURL}/api/portfolio/themes`,
                 values,
-                {withCredentials: true}
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                }
             )
             console.log("data saved")
             setEditIndex(null);

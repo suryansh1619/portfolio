@@ -33,9 +33,15 @@ export default function AboutAdmin(props) {
             _id: about._id
         }
         try{
+            const token = localStorage.getItem('token');
             const response=await axios.post(`${baseURL}/api/portfolio/about`,
                 values,
-                {withCredentials: true}
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                }
             )
             if(response.data.success){
                 console.log("data saved")
@@ -55,9 +61,15 @@ export default function AboutAdmin(props) {
             _id: aboutInfo._id
         }
         try{
+            const token = localStorage.getItem('token');
             const response=await axios.post(`${baseURL}/api/portfolio/aboutinfo`,
                 values,
-                {withCredentials: true}
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                }
             )
             if(response.data.success){
                 console.log("data saved")

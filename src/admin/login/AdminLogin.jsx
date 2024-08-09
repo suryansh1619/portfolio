@@ -37,8 +37,7 @@ export default function AdminLogin() {
             )
             const { token } = response.data;
             localStorage.setItem('token', token);
-            // const userData = await fetchUserData();
-            checkAuth();
+            await checkAuth();
             console.log("data fetched")
             navigate('/admin/home'); 
         }

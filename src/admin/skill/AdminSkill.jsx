@@ -29,9 +29,15 @@ export default function AdminSkill(props) {
         if(editIndex===null) return ;
         const values=skill[editIndex];
         try{
+            const token = localStorage.getItem('token');
             const response=await axios.post(`${baseURL}/api/portfolio/skills`,
                 values,
-                {withCredentials: true}
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                }
             )
             console.log("data saved")
             setEditIndex(null)
@@ -49,9 +55,15 @@ export default function AdminSkill(props) {
             level:newSkillLevel
         }
         try{
+            const token = localStorage.getItem('token');
             const response=await axios.post(`${baseURL}/api/portfolio/skills/add`,
                 values,
-                {withCredentials: true}
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                }
             )
             console.log("New Skill Added")
             resetNewSkills();
@@ -62,8 +74,14 @@ export default function AdminSkill(props) {
     }
     const onSubmitDeleteSkill=async(id)=>{
         try{
+            const token = localStorage.getItem('token');
             const response=await axios.delete(`${baseURL}/api/portfolio/skills/${id}`,
-                {withCredentials: true}
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                }
             )
             console.log("Skill Deleted")
             const updatedSkills = skill.filter(s => s._id !== id);

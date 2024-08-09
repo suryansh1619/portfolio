@@ -34,9 +34,15 @@ export default function AdminFooter(props) {
             link:newFooterLink
         }
         try{
+            const token = localStorage.getItem('token');
             const response=await axios.post(`${baseURL}/api/portfolio/footers/add`,
                 values,
-                {withCredentials: true}
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                }
             )
             console.log("New Footer added")
             resetNewFooters();
@@ -47,8 +53,14 @@ export default function AdminFooter(props) {
     }
     const onSubmitDeleteFooter=async(id)=>{
         try{
+            const token = localStorage.getItem('token');
             const response=await axios.delete(`${baseURL}/api/portfolio/footers/${id}`,
-                {withCredentials: true}
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                }
             )
             console.log("Footer Deleted");
         }
@@ -61,9 +73,15 @@ export default function AdminFooter(props) {
         if(editIndex===null) return;
         const values=footers[editIndex];
         try{
+            const token = localStorage.getItem('token');
             const response=await axios.post(`${baseURL}/api/portfolio/footers`,
                 values,
-                {withCredentials: true}
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                }
             )
             console.log("data saved")
             setEditIndex(null);
