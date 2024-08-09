@@ -7,7 +7,7 @@
 }
 
 .nav{
-    height: var(--header-height);
+    height: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
