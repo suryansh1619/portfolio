@@ -11,6 +11,9 @@
     display: flex;
     justify-content: center;
 }
+.admin-about-title span{
+    color:var(--first-color)
+}
 .admin-about-list{
     grid-template-columns: repeat(2,1fr);
 }

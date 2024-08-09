@@ -3,8 +3,7 @@ import Project from './Project'
 import './projects.css';
 import { ThemeContext } from '../contexts/ThemeContext';
 
-export default function Projects(props) {
-    const {projectsProject,projectsProjectItems}=props;
+export default function Projects() {
     const {darktheme}=useContext(ThemeContext);
     return (
     <section 
@@ -24,8 +23,7 @@ export default function Projects(props) {
             style={{
                 color:darktheme ? 'var(--container-color)':'var(--title-color)'
             }}>Most recent</h4>
-        <Project
-            projectsProject={projectsProject}/>
+        <Project/>
     </section>
     )
 }

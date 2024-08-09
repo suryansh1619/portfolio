@@ -3,12 +3,15 @@ import "./header.css";
 import useToggle from '../hooks/usetoggle'
 import { Link, useLocation } from 'react-router-dom';
 import { ThemeContext } from '../contexts/ThemeContext';
+import { DataContext } from '../contexts/DataContext';
 export default function Header() {
     window.addEventListener("scroll",function(){
         const header=document.querySelector(".header");
         if(this.scrollY>=80) header.classList.add('scroll-header');
         else if(header.classList.length>0) header.classList.remove('scroll-header');
     })
+    const {state}=useContext(DataContext)
+    const name=state.homeData[0].firstName;
     const[toggle,showMenu]=useToggle(false);
     const location=useLocation();
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -27,7 +30,7 @@ export default function Header() {
                 className='nav container'
                 >
                 <Link to='/' 
-                className='nav-logo'>Suryansh</Link>
+                className='nav-logo'>{name}</Link>
                 <div 
                     className={toggle?'nav-menu show-menu':'nav-menu'}
                     style={{backgroundColor: isMobile ? (darktheme ?'var(--title-color)' : 'var(--container-color)')

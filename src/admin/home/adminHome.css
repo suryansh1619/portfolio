@@ -18,6 +18,10 @@
     justify-content: center;
 }
 
+.admin-home-title span{
+    color: var(--first-color);
+}
+
 
 @media screen and (max-width:576px) {
     .admin-home-social-edit-btn,

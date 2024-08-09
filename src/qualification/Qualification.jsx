@@ -2,9 +2,12 @@ import React, { useContext } from 'react'
 import './qualification.css'
 import useToggle from '../hooks/usetoggle';
 import { ThemeContext } from '../contexts/ThemeContext';
+import { DataContext } from '../contexts/DataContext';
 
-export default function Qualification(props) {
-    const {qualificationEducation,qualificationAchievement}=props;
+export default function Qualification() {
+    const {state}=useContext(DataContext)
+    const qualificationEducation=state.qualificationEducation;
+    const qualificationAchievement=state.qualificationAchievement;
     const {darktheme}=useContext(ThemeContext)
     const[toggle,showMenu]=useToggle(true);
     return (

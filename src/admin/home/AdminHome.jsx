@@ -1,4 +1,4 @@
-import React,{useContext, useState,useEffect} from 'react'
+import React,{useContext, useState,useEffect,useReducer} from 'react'
 import useInput from '../../hooks/useInput'
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
@@ -7,9 +7,12 @@ import './adminHome.css'
 import axios from 'axios';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { AuthContext } from '../../contexts/AuthContext';
+import { DataContext } from '../../contexts/DataContext';
 import { Navigate } from 'react-router-dom';
-export default function AdminHome(props) {
-    const {homeData,homeSocial}=props;
+export default function AdminHome() {
+    const {state}=useContext(DataContext);
+    const homeData=state.homeData[0];
+    const homeSocial=state.homeSocial;
     const [firstName, setFirstName] = useInput(homeData.firstName);
     const [lastName, setLastName] = useInput(homeData.lastName);
     const [description, setDescription] = useInput(homeData.description);
@@ -89,8 +92,11 @@ export default function AdminHome(props) {
                             backgroundColor:!darktheme ? 'var(--container-color)':'var(--title-color)',
                             boxShadow: darktheme ? '0 4px 12px rgba(0, 0, 0, 0.5)' : '0 2px 8px rgba(0, 0, 0, 0.5)'
                         }}>
+                        <h2 
+                            style={{color:darktheme ? 'var(--container-color)':'var(--title-color)'}}
+                            className='admin-home-title'><span>H</span>ome</h2>
                         <form onSubmit={onSubmitHomeData}>
-                            <div style={{ margin: '1rem 0', padding: '.5rem 1rem'}}>
+                            <div style={{ padding: '.5rem 1rem'}}>
                                 <TextField
                                 size={isMobile ? "small": ''} 
                                 InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}

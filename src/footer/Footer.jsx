@@ -1,9 +1,11 @@
 import React, { useContext } from 'react'
 import './footer.css';
 import { ThemeContext } from '../contexts/ThemeContext';
+import {DataContext} from '../contexts/DataContext'
 
-export default function Footer(props) {
-    const {footers}=props;
+export default function Footer() {
+    const {state}=useContext(DataContext);
+    const footers=state.footer
     const {darktheme}=useContext(ThemeContext);
     return (
         <footer 

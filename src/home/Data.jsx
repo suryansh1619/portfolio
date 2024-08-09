@@ -1,8 +1,10 @@
 import React, { useContext } from 'react'
 import { ThemeContext } from '../contexts/ThemeContext'
+import { DataContext } from '../contexts/DataContext'
 
-export default function Data(props) {
-    const {homeData}=props;
+export default function Data() {
+    const {state}=useContext(DataContext)
+    const homeData =state.homeData[0]
     let [firstCharFirstName, ...restOfStringFirstName] = homeData.firstName.split('');
     let [firstCharLastName, ...restOfStringLastName] = homeData.lastName.split('');
     const {darktheme}=useContext(ThemeContext)

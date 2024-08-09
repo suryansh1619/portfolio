@@ -8,7 +8,7 @@ import Theme from './theme/Theme';
 import { ThemeProvider } from './contexts/ThemeContext';
 import useToggle from './hooks/usetoggle';
 import Loader from './loader/Loader';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import AdminHome from './admin/home/AdminHome';
 import AdminAbout from './admin/about/AdminAbout';
@@ -20,13 +20,13 @@ import AdminFooter from './admin/footer/AdminFooter';
 import AdminTheme from './admin/theme/AdminTheme';
 import AdminLogin from './admin/login/AdminLogin';
 import { AuthProvider} from './contexts/AuthContext';
+import { DataProvider } from './contexts/DataContext';
 
 function App() {
   const [isLoading, setLoading] = useToggle(true);
   const [data, setData] = useState({});
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith('/admin');
-
 
   const saveData = (data) => {
     setData(data);
@@ -52,52 +52,30 @@ function App() {
   return (
     <AuthProvider>
       <ThemeProvider>
-        {isLoading ? <Loader /> :
-          <>
-            {!isAdminRoute && <Header />}
-            {isAdminRoute && location.pathname !== "/admin/login" && <AdminHeader />}
+        <DataProvider>
+          {isLoading ? <Loader /> :
+            <>
+              {!isAdminRoute && <Header />}
+              {isAdminRoute && location.pathname !== "/admin/login" && <AdminHeader />}
 
-            <Theme themes={data.theme} />
-            <Routes>
-              <Route path="/" element={<Home homeData={data.homeData[0]} homeSocial={data.homeSocial} />} />
-              <Route path="/about" element={<AboutInfo
-                about={data.about[0]}
-                aboutInfo={data.aboutInfo[0]}
-                skills={data.skills}
-                qualificationEducation={data.qualificationEducation}
-                qualificationAchievement={data.qualificationAchievement}
-                footers={data.footer}
-              />} />
-              <Route path="/projects" element={<Projects projectsProject={data.projectsProject} />} />
-              <Route path='/admin/login' element={<AdminLogin />} />
-              <Route path='/admin/home' element={<AdminHome
-                homeData={data.homeData[0]}
-                homeSocial={data.homeSocial}
-              />} />
-              <Route path='/admin/about' element={<AdminAbout
-                about={data.about[0]}
-                aboutInfo={data.aboutInfo[0]}
-              />}  />
-              <Route path='/admin/skills' element={<AdminSkill
-                skills={data.skills}
-              />}  />
-              <Route path='/admin/qualification' element={<AdminQualification
-                qualificationEducation={data.qualificationEducation}
-                qualificationAchievement={data.qualificationAchievement}
-              />}  />
-              <Route path='/admin/projects' element={<AdminProjects
-                projectsProject={data.projectsProject}
-              />}  />
-              <Route path='/admin/footer' element={<AdminFooter
-                footer={data.footer}
-              />} />
-              <Route path='/admin/theme' element={<AdminTheme
-                theme={data.theme}
-              />}  />
-              <Route path="*" element={<h1>Error Not Found</h1>} />
-            </Routes>
-          </>
-        }
+              <Theme/>
+              <Routes>
+                <Route path="/" element={<Home/>} />
+                <Route path="/about" element={<AboutInfo/>} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path='/admin/login' element={<AdminLogin />} />
+                <Route path='/admin/home' element={<AdminHome/>} />
+                <Route path='/admin/about' element={<AdminAbout/>}  />
+                <Route path='/admin/skills' element={<AdminSkill/>}  />
+                <Route path='/admin/qualification' element={<AdminQualification/>}  />
+                <Route path='/admin/projects' element={<AdminProjects/>}  />
+                <Route path='/admin/footer' element={<AdminFooter/>} />
+                <Route path='/admin/theme' element={<AdminTheme/>}  />
+                <Route path="*" element={<h1>Error Not Found</h1>} />
+              </Routes>
+            </>
+          }
+        </DataProvider>
       </ThemeProvider>
     </AuthProvider>  
   );

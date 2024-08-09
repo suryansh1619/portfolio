@@ -8,10 +8,12 @@ import useInput from '../../hooks/useInput';
 import axios from 'axios';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { AuthContext } from '../../contexts/AuthContext';
+import { DataContext } from '../../contexts/DataContext';
 import { Navigate } from 'react-router-dom';
-export default function AdminProjects(props) {
-    const {projectsProject}=props;
-    const [projects,setProjects,resetProjects]=useInputObject(projectsProject);
+export default function AdminProjects() {
+    const {state}=useContext(DataContext);
+    const {projectsProject}=state;
+    const [projects,setProjects]=useInputObject(projectsProject);
     const {darktheme}=useContext(ThemeContext);
     const {auth}=useContext(AuthContext)
 
@@ -148,184 +150,9 @@ export default function AdminProjects(props) {
                             boxShadow: darktheme ? '0 4px 12px rgba(0, 0, 0, 0.5)' : '0 2px 8px rgba(0, 0, 0, 0.5)'
                         }}
                         className='admin-project-card'>
-                        <button style={
-                            {   
-                                color:darktheme ? 'var(--title-color)':'var(--container-color)',
-                                backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
-                            }}
-                            className='button button--flex .admin-project-add-new-btn' onClick={toggleHoverEdit}>
-                            Add New Project
-                        </button>
-                        {isHoveringEdit &&
-                        <form onSubmit={onSubmitNewProject}>
-                            <div className='admin-project-new-main'
-                            style={{
-                                backgroundColor: darktheme ? 'rgba(255,255,255,0.6)' :"rgba(0,0,0,0.6)"
-                            }}>
-                                <div
-                                    style={{
-                                        margin: '1rem 0', padding: '.5rem 1rem',
-                                        border: darktheme ?  "1px solid rgba(255,255,255,0.2)" : "1px solid rgba(0,0,0,0.2)",
-                                        backgroundColor: !darktheme ? 'rgba(255,255,255,0.6)' :"rgba(0,0,0,0.6)"
-                                    }}
-                                        className='admin-project-new-modal'>
-                                        <i className='uil uil-times-circle admin-project-new-close' onClick={toggleHoverEdit}></i>
-                                    <TextField
-                                    size={isMobile ? "small": ''} 
-                                    style={{width:isMobile370 ? "200px" : ''}}
-                                    InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
-                                    value={newProjectImgurl} 
-                                    onChange={setNewProjectImgurl}
-                                    variant="outlined"
-                                    margin='normal'
-                                    label="Image URL"
-                                    />
-                                    <TextField
-                                    size={isMobile ? "small": ''} 
-                                    style={{width:isMobile370 ? "200px" : ''}}
-                                    InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                    value={newProjectLink} 
-                                    onChange={setNewProjectLink}
-                                    variant="outlined"
-                                    margin='normal'
-                                    label="Project Link"
-                                    fullWidth
-                                    />
-                                    <TextField
-                                        size={isMobile ? "small": ''} 
-                                        style={{width:isMobile370 ? "100px" : ''}}
-                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                        value={newProjectDescription} 
-                                        onChange={setNewProjectDescription}
-                                        variant="outlined"
-                                        margin='normal'
-                                        label="Description 1"
-                                        fullWidth
-                                        />
-                                    <div className='admin-project-new grid'>
-                                        <TextField
-                                        size={isMobile ? "small": ''} 
-                                        style={{width:isMobile370 ? "100px" : ''}}
-                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                        value={newProject} 
-                                        onChange={setNewProject}
-                                        variant="outlined"
-                                        margin='normal'
-                                        label="Name"
-                                        fullWidth
-                                        />
-                                        <TextField
-                                        size={isMobile ? "small": ''} 
-                                        style={{width:isMobile370 ? "100px" : ''}}
-                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                        value={newProjectCategory} 
-                                        onChange={setNewProjectCategory}
-                                        variant="outlined"
-                                        margin='normal'
-                                        label="Category"
-                                        fullWidth
-                                        />
-                                        <TextField
-                                        size={isMobile ? "small": ''} 
-                                        style={{width:isMobile370 ? "100px" : ''}}
-                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                        value={newProjectSubtitle1} 
-                                        onChange={setNewProjectSubtitle1}
-                                        variant="outlined"
-                                        margin='normal'
-                                        label="Subtitle 1"
-                                        fullWidth
-                                        />
-                                        <TextField
-                                        size={isMobile ? "small": ''} 
-                                        style={{width:isMobile370 ? "100px" : ''}}
-                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                        value={newProjectSubtitle2} 
-                                        onChange={setNewProjectSubtitle2}
-                                        variant="outlined"
-                                        margin='normal'
-                                        label="Subtitle 2"
-                                        fullWidth
-                                        />
-                                        <TextField
-                                        size={isMobile ? "small": ''} 
-                                        style={{width:isMobile370 ? "100px" : ''}}
-                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                        value={newProjectSubtitle3} 
-                                        onChange={setNewProjectSubtitle3}
-                                        variant="outlined"
-                                        margin='normal'
-                                        label="Subtitle 3"
-                                        fullWidth
-                                        />
-                                        <TextField
-                                        size={isMobile ? "small": ''} 
-                                        style={{width:isMobile370 ? "100px" : ''}}
-                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                        value={newProjectSubtitle4} 
-                                        onChange={setNewProjectSubtitle4}
-                                        variant="outlined"
-                                        margin='normal'
-                                        label="Subtitle 4"
-                                        fullWidth
-                                        />
-                                        <TextField
-                                        size={isMobile ? "small": ''} 
-                                        style={{width:isMobile370 ? "100px" : ''}}
-                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                        value={newProjectSubtitle5} 
-                                        onChange={setNewProjectSubtitle5}
-                                        variant="outlined"
-                                        margin='normal'
-                                        label="Subtitle 5"
-                                        fullWidth
-                                        />
-                                        <TextField
-                                        size={isMobile ? "small": ''} 
-                                        style={{width:isMobile370 ? "100px" : ''}}
-                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
-                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
-                                        value={newProjectSubtitle6} 
-                                        onChange={setNewProjectSubtitle6}
-                                        variant="outlined"
-                                        margin='normal'
-                                        label="Subtitle 6"
-                                        fullWidth
-                                        />
-                                        <button 
-                                            style={
-                                                {   
-                                                    color:darktheme ? 'var(--title-color)':'var(--container-color)',
-                                                    backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
-                                                }}
-                                            className="admin-project-add-btn button button--flex" 
-                                            variant="outlined"
-                                            onClick={onSubmitNewProject}
-                                            type='submit'>Add</button>
-                                        <button 
-                                        style={
-                                            {   
-                                                color:darktheme ? 'var(--title-color)':'var(--container-color)',
-                                                backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
-                                            }}
-                                            className="admin-project-reset-btn button button--flex" 
-                                            variant="outlined"
-                                            onClick={resetNewProjects}>Reset</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                        }
+                        <h2 
+                            style={{color:darktheme ? 'var(--container-color)':'var(--title-color)'}}
+                            className='admin-head-project-title'><span>P</span>rojects</h2>
                         <div 
                             className='admin-project-list-modal grid'>
                             {projects.map((project,index)=>{
@@ -536,6 +363,184 @@ export default function AdminProjects(props) {
                                 )
                             })}
                         </div>
+                        <button style={
+                            {   
+                                color:darktheme ? 'var(--title-color)':'var(--container-color)',
+                                backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
+                            }}
+                            className='button button--flex .admin-project-add-new-btn' onClick={toggleHoverEdit}>
+                            Add New Project
+                        </button>
+                        {isHoveringEdit &&
+                        <form onSubmit={onSubmitNewProject}>
+                            <div className='admin-project-new-main'
+                            style={{
+                                backgroundColor: darktheme ? 'rgba(255,255,255,0.6)' :"rgba(0,0,0,0.6)"
+                            }}>
+                                <div
+                                    style={{
+                                        margin: '1rem 0', padding: '.5rem 1rem',
+                                        border: darktheme ?  "1px solid rgba(255,255,255,0.2)" : "1px solid rgba(0,0,0,0.2)",
+                                        backgroundColor: !darktheme ? 'rgba(255,255,255,0.6)' :"rgba(0,0,0,0.6)"
+                                    }}
+                                        className='admin-project-new-modal'>
+                                        <i className='uil uil-times-circle admin-project-new-close' onClick={toggleHoverEdit}></i>
+                                    <TextField
+                                    size={isMobile ? "small": ''} 
+                                    style={{width:isMobile370 ? "200px" : ''}}
+                                    InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}}
+                                    value={newProjectImgurl} 
+                                    onChange={setNewProjectImgurl}
+                                    variant="outlined"
+                                    margin='normal'
+                                    label="Image URL"
+                                    />
+                                    <TextField
+                                    size={isMobile ? "small": ''} 
+                                    style={{width:isMobile370 ? "200px" : ''}}
+                                    InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
+                                    value={newProjectLink} 
+                                    onChange={setNewProjectLink}
+                                    variant="outlined"
+                                    margin='normal'
+                                    label="Project Link"
+                                    fullWidth
+                                    />
+                                    <TextField
+                                        size={isMobile ? "small": ''} 
+                                        style={{width:isMobile370 ? "100px" : ''}}
+                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
+                                        value={newProjectDescription} 
+                                        onChange={setNewProjectDescription}
+                                        variant="outlined"
+                                        margin='normal'
+                                        label="Description 1"
+                                        fullWidth
+                                        />
+                                    <div className='admin-project-new grid'>
+                                        <TextField
+                                        size={isMobile ? "small": ''} 
+                                        style={{width:isMobile370 ? "100px" : ''}}
+                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
+                                        value={newProject} 
+                                        onChange={setNewProject}
+                                        variant="outlined"
+                                        margin='normal'
+                                        label="Name"
+                                        fullWidth
+                                        />
+                                        <TextField
+                                        size={isMobile ? "small": ''} 
+                                        style={{width:isMobile370 ? "100px" : ''}}
+                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
+                                        value={newProjectCategory} 
+                                        onChange={setNewProjectCategory}
+                                        variant="outlined"
+                                        margin='normal'
+                                        label="Category"
+                                        fullWidth
+                                        />
+                                        <TextField
+                                        size={isMobile ? "small": ''} 
+                                        style={{width:isMobile370 ? "100px" : ''}}
+                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
+                                        value={newProjectSubtitle1} 
+                                        onChange={setNewProjectSubtitle1}
+                                        variant="outlined"
+                                        margin='normal'
+                                        label="Subtitle 1"
+                                        fullWidth
+                                        />
+                                        <TextField
+                                        size={isMobile ? "small": ''} 
+                                        style={{width:isMobile370 ? "100px" : ''}}
+                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
+                                        value={newProjectSubtitle2} 
+                                        onChange={setNewProjectSubtitle2}
+                                        variant="outlined"
+                                        margin='normal'
+                                        label="Subtitle 2"
+                                        fullWidth
+                                        />
+                                        <TextField
+                                        size={isMobile ? "small": ''} 
+                                        style={{width:isMobile370 ? "100px" : ''}}
+                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
+                                        value={newProjectSubtitle3} 
+                                        onChange={setNewProjectSubtitle3}
+                                        variant="outlined"
+                                        margin='normal'
+                                        label="Subtitle 3"
+                                        fullWidth
+                                        />
+                                        <TextField
+                                        size={isMobile ? "small": ''} 
+                                        style={{width:isMobile370 ? "100px" : ''}}
+                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
+                                        value={newProjectSubtitle4} 
+                                        onChange={setNewProjectSubtitle4}
+                                        variant="outlined"
+                                        margin='normal'
+                                        label="Subtitle 4"
+                                        fullWidth
+                                        />
+                                        <TextField
+                                        size={isMobile ? "small": ''} 
+                                        style={{width:isMobile370 ? "100px" : ''}}
+                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
+                                        value={newProjectSubtitle5} 
+                                        onChange={setNewProjectSubtitle5}
+                                        variant="outlined"
+                                        margin='normal'
+                                        label="Subtitle 5"
+                                        fullWidth
+                                        />
+                                        <TextField
+                                        size={isMobile ? "small": ''} 
+                                        style={{width:isMobile370 ? "100px" : ''}}
+                                        InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}
+                                        InputLabelProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}} 
+                                        value={newProjectSubtitle6} 
+                                        onChange={setNewProjectSubtitle6}
+                                        variant="outlined"
+                                        margin='normal'
+                                        label="Subtitle 6"
+                                        fullWidth
+                                        />
+                                        <button 
+                                            style={
+                                                {   
+                                                    color:darktheme ? 'var(--title-color)':'var(--container-color)',
+                                                    backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
+                                                }}
+                                            className="admin-project-add-btn button button--flex" 
+                                            variant="outlined"
+                                            onClick={onSubmitNewProject}
+                                            type='submit'>Add</button>
+                                        <button 
+                                        style={
+                                            {   
+                                                color:darktheme ? 'var(--title-color)':'var(--container-color)',
+                                                backgroundColor:!darktheme ? 'var(--title-color)':'var(--container-color)'
+                                            }}
+                                            className="admin-project-reset-btn button button--flex" 
+                                            variant="outlined"
+                                            onClick={resetNewProjects}>Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        }
                     </div>
                 </div>
             </section>

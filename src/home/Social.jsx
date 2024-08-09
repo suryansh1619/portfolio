@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
 import { ThemeContext } from '../contexts/ThemeContext'
-
-export default function Social(props) {
-    const {homeSocial}=props;
+import { DataContext } from '../contexts/DataContext'
+export default function Social() {
+    const {state}=useContext(DataContext)
+    const homeSocial =state.homeSocial
     const {darktheme}=useContext(ThemeContext);
     return (
         <div className='home-social'>

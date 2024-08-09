@@ -45,6 +45,10 @@
     position: relative;
     cursor: pointer;
 }
+
+.admin-head-project-title span{
+    color:var(--first-color);
+}
 .admin-project-new-main{
     position: fixed; 
     top: 0; 

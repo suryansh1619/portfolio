@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
 import { ThemeContext } from '../contexts/ThemeContext'
-
-export default function Info(props) {
-    const {aboutInfo}=props;
+import {DataContext} from '../contexts/DataContext'
+export default function Info() {
+    const {state}=useContext(DataContext)
+    const aboutInfo=state.aboutInfo[0];
     const {darktheme}=useContext(ThemeContext);
     return (
         <div className="about-info grid">

@@ -4,20 +4,13 @@ import Skills from './skills/Skills';
 import Qualification from './qualification/Qualification';
 import Footer from './footer/Footer'
 
-export default function AboutInfo(props) {
-    const {about,aboutInfo,qualificationEducation,qualificationAchievement,skills,footers}=props
+export default function AboutInfo() {
     return (
         <>
-            <About 
-                about={about}  
-                aboutInfo={aboutInfo}/>
-            <Skills 
-                skills={skills}  />
-            <Qualification
-                qualificationEducation={qualificationEducation}
-                qualificationAchievement={qualificationAchievement}/>
-            <Footer
-                footers={footers}/>
+            <About />
+            <Skills />
+            <Qualification/>
+            <Footer/>
         </>
     )
 }

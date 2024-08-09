@@ -4,12 +4,15 @@ import useToggle from '../../hooks/usetoggle'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import axios from 'axios';
+import { DataContext } from '../../contexts/DataContext';
 export default function AdminHeader() {
     const[toggle,showMenu]=useToggle(false);
     const location=useLocation();
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
     const baseURL =process.env.REACT_APP_BACKEND_PORT || '';
     const navigate=useNavigate()
+    const {state}=useContext(DataContext)
+    const name=state.homeData[0].firstName;
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth <= 768);
@@ -40,7 +43,7 @@ export default function AdminHeader() {
                 className='admin-nav container'
                 >
                 <Link to='/' 
-                className='admin-nav-logo'>Suryansh</Link>
+                className='admin-nav-logo'>{name}</Link>
                 <div 
                     className={toggle?'admin-nav-menu admin-show-menu':'admin-nav-menu'}
                     style={{backgroundColor: isMobile ? (darktheme ?'var(--title-color)' : 'var(--container-color)')

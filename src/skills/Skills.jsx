@@ -1,9 +1,11 @@
 import React, { useContext,useState } from 'react'
 import './skills.css'
 import { ThemeContext } from '../contexts/ThemeContext'
+import {DataContext} from '../contexts/DataContext'
 
-export default function Skills(props) {
-    const {skills}=props;
+export default function Skills() {
+    const {state}=useContext(DataContext);
+    const skills=state.skills;
     const {darktheme}=useContext(ThemeContext);
     const [hoveredId, setHoveredId] = useState(null);
     const handleMouseEnter = (id) => {

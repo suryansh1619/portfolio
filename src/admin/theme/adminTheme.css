@@ -21,6 +21,9 @@
     margin-top: 1rem;
     justify-content: center;
 }
+.admin-theme-title span{
+    color:var(--first-color)
+}
 @media screen and (max-width:992px) {
     .admin-theme-list{
         grid-template-columns: repeat(2,max-content);

@@ -6,9 +6,12 @@ import axios from 'axios';
 import './adminAbout.css'
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { AuthContext } from '../../contexts/AuthContext';
+import { DataContext } from '../../contexts/DataContext';
 import { Navigate } from 'react-router-dom';
-export default function AboutAdmin(props) {
-    const {about,aboutInfo}=props;
+export default function AboutAdmin() {
+    const {state}=useContext(DataContext)
+    const about=state.about[0];
+    const aboutInfo=state.aboutInfo[0];
     const [description, setDescription] = useInput(about.description);
     const [buttonText, setButtonText] = useInput(about.buttonText);
     const [title1, setTitle1] = useInput(aboutInfo.title1);
@@ -88,8 +91,14 @@ export default function AboutAdmin(props) {
                             backgroundColor:!darktheme ? 'var(--container-color)':'var(--title-color)',
                             boxShadow: darktheme ? '0 4px 12px rgba(0, 0, 0, 0.5)' : '0 2px 8px rgba(0, 0, 0, 0.5)'
                         }}>
+                        <h2
+                        className='admin-about-title'
+                            style={{color:darktheme ? 'var(--container-color)':'var(--title-color)'}}>
+                            <span>A</span>bout
+                        </h2>
+
                         <form onSubmit={onSubmitAbout}>
-                            <div style={{ margin: '1rem 0', padding: '.5rem 1rem' }}>
+                            <div style={{padding: '.5rem 1rem' }}>
                                 <TextField
                                 size={isMobile ? "small": ''}
                                 InputProps={{ style:{color:!darktheme ? 'var(--title-color)':'var(--container-color)',}}}

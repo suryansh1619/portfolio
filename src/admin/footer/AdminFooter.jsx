@@ -7,9 +7,11 @@ import useInput from '../../hooks/useInput';
 import axios from 'axios';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { AuthContext } from '../../contexts/AuthContext';
+import { DataContext } from '../../contexts/DataContext';
 import { Navigate } from 'react-router-dom';
-export default function AdminFooter(props) {
-    const {footer}=props;
+export default function AdminFooter() {
+    const {state}=useContext(DataContext);
+    const {footer}=state;
     const [footers,setFooters]=useInputObject(footer);
     const [editIndex, setEditIndex] = useState(null);
     const [newFooter,setNewFooter,resetNewFooter]=useInput('');
@@ -107,8 +109,11 @@ export default function AdminFooter(props) {
                             backgroundColor:!darktheme ? 'var(--container-color)':'var(--title-color)',
                             boxShadow: darktheme ? '0 4px 12px rgba(0, 0, 0, 0.5)' : '0 2px 8px rgba(0, 0, 0, 0.5)'
                         }}>
+                        <h2 
+                            style={{color:darktheme ? 'var(--container-color)':'var(--title-color)'}}
+                            className='admin-footer-title'><span>F</span>ooter</h2>
                         <form onSubmit={onSubmitNewFooter}>
-                            <div style={{ margin: '1rem 0', padding: '.5rem 1rem' }}>
+                            <div style={{padding: '.5rem 1rem' }}>
                                 <div className='admin-footer-new grid'>
                                     <div className='admin-footer-single-field'>
                                     <TextField

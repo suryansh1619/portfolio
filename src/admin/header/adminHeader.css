@@ -73,7 +73,7 @@
     }
     .admin-nav-list{
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap:2rem;
     }
     .admin-nav-icon{
@@ -99,6 +99,11 @@
     .admin-nav-close,
     .admin-nav-toggle{
         display: block;
+    }
+}
+@media screen and (max-width:768px){
+    .admin-nav-list{
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 

@@ -7,9 +7,11 @@ import axios from 'axios';
 import useInput from '../../hooks/useInput';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { AuthContext } from '../../contexts/AuthContext';
+import { DataContext } from '../../contexts/DataContext';
 import { Navigate } from 'react-router-dom';
-export default function AdminSkill(props) {
-    const {skills}=props;
+export default function AdminSkill() {
+    const {state}=useContext(DataContext);
+    const {skills}=state;
     const [skill,setSkill,resetSkill]=useInputObject(skills);
     const [editIndex, setEditIndex] = useState(null);
     const [newSkill,setNewSkill,resetNewSkill]=useInput('');
@@ -108,8 +110,13 @@ export default function AdminSkill(props) {
                         backgroundColor:!darktheme ? 'var(--container-color)':'var(--title-color)',
                         boxShadow: darktheme ? '0 4px 12px rgba(0, 0, 0, 0.5)' : '0 2px 8px rgba(0, 0, 0, 0.5)'
                     }}>
+                        <h2
+                        className='admin-skill-title'
+                            style={{color:darktheme ? 'var(--container-color)':'var(--title-color)'}}>
+                            <span>S</span>kills
+                        </h2>
                     <form onSubmit={onSubmitNewSkill}>
-                        <div style={{ margin: '1rem 0', padding: '.5rem 1rem' }}>
+                        <div style={{ padding: '.5rem 1rem' }}>
                             <div className='admin-skill-new grid'>
                                 <div className='admin-skill-single-field'>
                                     <TextField

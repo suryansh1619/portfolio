@@ -21,6 +21,9 @@
     margin-top: 1rem;
     justify-content: center;
 }
+.admin-footer-title span{
+    color: var(--first-color);
+}
 @media screen and (max-width:992px) {
     .admin-footer-list{
         grid-template-columns: repeat(2,max-content);

@@ -7,9 +7,11 @@ import useInput from '../../hooks/useInput';
 import axios from 'axios';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { AuthContext } from '../../contexts/AuthContext';
+import { DataContext } from '../../contexts/DataContext';
 import {Navigate} from 'react-router-dom'
-export default function AdminTheme(props) {
-    const {theme}=props;
+export default function AdminTheme() {
+    const {state}=useContext(DataContext);
+    const {theme}=state;
     const [themes,setThemes,resetThemes]=useInputObject(theme);
     const [editIndex, setEditIndex] = useState(null);
     const [newTheme,setNewTheme,resetNewTheme]=useInput('');
@@ -105,8 +107,11 @@ export default function AdminTheme(props) {
                             backgroundColor:!darktheme ? 'var(--container-color)':'var(--title-color)',
                             boxShadow: darktheme ? '0 4px 12px rgba(0, 0, 0, 0.5)' : '0 2px 8px rgba(0, 0, 0, 0.5)'
                         }}>
+                            <h2 
+                            style={{color:darktheme ? 'var(--container-color)':'var(--title-color)'}}
+                            className='admin-theme-title'><span>T</span>heme</h2>
                         <form onSubmit={onSubmitNewTheme}>
-                            <div style={{ margin: '1rem 0', padding: '.5rem 1rem' }}>
+                            <div style={{padding: '.5rem 1rem' }}>
                                 <div className='admin-theme-new grid'>
                                 <div className='admin-theme-single-field'>
                                     <TextField

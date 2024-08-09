@@ -7,9 +7,11 @@ import './adminQualification.css'
 import axios from 'axios';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { AuthContext } from '../../contexts/AuthContext';
+import { DataContext } from '../../contexts/DataContext';
 import { Navigate } from 'react-router-dom';
 export default function AdminQualification(props) {
-    const {qualificationEducation,qualificationAchievement}=props;
+    const {state}=useContext(DataContext);
+    const {qualificationEducation,qualificationAchievement}=state;
     const [education,setEducation]=useInputObject(qualificationEducation);
     const [achievement,setAchievement]=useInputObject(qualificationAchievement);
     const [editIndexEducation, setEditIndexEducation] = useState(null);
@@ -193,8 +195,13 @@ export default function AdminQualification(props) {
                             backgroundColor:!darktheme ? 'var(--container-color)':'var(--title-color)',
                             boxShadow: darktheme ? '0 4px 12px rgba(0, 0, 0, 0.5)' : '0 2px 8px rgba(0, 0, 0, 0.5)'
                         }}>
+                            <h2
+                        className='admin-qualification-title'
+                            style={{color:darktheme ? 'var(--container-color)':'var(--title-color)'}}>
+                            <span>E</span>ducation
+                        </h2>
                         <form onSubmit={onSubmitNewEducation}>
-                            <div style={{ margin: '1rem 0', padding: '.5rem 1rem' }}>
+                            <div style={{padding: '.5rem 1rem' }}>
                                 <div className='admin-qualification-new grid'>
                                     <TextField
                                     size={isMobile ? "small": ''} 
@@ -330,9 +337,14 @@ export default function AdminQualification(props) {
                                 })}
                             </div>
                         </form>
-                        <hr />
+
+                        <h2
+                            className='admin-qualification-title'
+                            style={{color:darktheme ? 'var(--container-color)':'var(--title-color)'}}>
+                            <span>A</span>chievements
+                        </h2>
                         <form onSubmit={onSubmitNewAchievements}>
-                            <div style={{ margin: '1rem 0', padding: '.5rem 1rem' }}>
+                            <div style={{padding: '.5rem 1rem' }}>
                                 <div className='admin-qualification-new grid'>
                                     <TextField
                                     size={isMobile ? "small": ''} 

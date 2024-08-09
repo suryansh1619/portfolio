@@ -3,9 +3,10 @@ import './about.css'
 import aboutImg from '../assets/suryansh.jpg'
 import Info from './Info'
 import { ThemeContext } from '../contexts/ThemeContext'
-
-export default function About(props) {
-    const {about,aboutInfo}=props;
+import { DataContext } from '../contexts/DataContext'
+export default function About() {
+    const {state}=useContext(DataContext)
+    const about=state.about[0];
     const {darktheme}=useContext(ThemeContext);
 
     return (
@@ -22,7 +23,7 @@ export default function About(props) {
             <div className="about-container container grid">
                 <img src={aboutImg} alt="about" className="about-img" />
                 <div className="about-data">
-                    <Info aboutInfo={aboutInfo}/>
+                    <Info/>
                     <p 
                         className='about-description'
                         style={{color:!darktheme ? 'var(--title-color)':'var(--container-color)'}}>

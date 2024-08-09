@@ -5,10 +5,12 @@ import useToggle from '../hooks/usetoggle'
 import {FaCog} from 'react-icons/fa';
 import {BsSun,BsMoon} from 'react-icons/bs';
 import { ThemeContext } from '../contexts/ThemeContext';
+import { DataContext } from '../contexts/DataContext';
 import axios from 'axios';
-export default function Theme(props) {
+export default function Theme() {
     const { darktheme, changetheme } = useContext(ThemeContext);
-    const {themes}=props;
+    const {state}=useContext(DataContext);
+    const themes=state.theme;
     const [color, setColor] = useState(null)
     const [openStyle,toggleStyle]=useToggle(false)
     const [openPanel,togglePanel]=useToggle(false)

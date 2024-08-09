@@ -23,6 +23,10 @@
     top: 1rem;
 }
 
+.admin-skill-title span{
+    color:var(--first-color)
+}
+
 @media screen and (max-width:992px) {
     .admin-skill-list{
         grid-template-columns: repeat(2,max-content);
