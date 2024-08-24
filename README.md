@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).\
 Website Link: [https://portfolio-nine-sable-21.vercel.app](https://portfolio-nine-sable-21.vercel.app).\
-Video Link: [https://github.com/user-attachments/assets/ecfaad2f-0278-4771-a3eb-dab8224965d8](https://github.com/user-attachments/assets/ecfaad2f-0278-4771-a3eb-dab8224965d8).\
+Video Link: [https://github.com/user-attachments/assets/ecfaad2f-0278-4771-a3eb-dab8224965d8](https://github.com/user-attachments/assets/ecfaad2f-0278-4771-a3eb-dab8224965d8).
 
 
 ## Available Scripts
